@@ -251,7 +251,7 @@ public class GenerateUserLearnedCourses {
 	}
 	
 	/**
-	 * store new user_learned_courses records into mongodb
+	 * store new user_learned_courses records into MongoDB
 	 * @param userCoursesMap Map<String, ArrayList<String>>
 	 */
 	static void storeUserCoursesIntoMongodb(Map<String, ArrayList<String>> userCoursesMap) {
