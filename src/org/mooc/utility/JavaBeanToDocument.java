@@ -17,13 +17,12 @@ import com.mongodb.client.MongoCollection;
 public class JavaBeanToDocument {
 
 	public static void main(String[] args) {
-		UserLearnedCourses userCourses = new UserLearnedCourses();
+		String userId = "001";
+		TreeSet<String> courseSet = new TreeSet<String>();
+		courseSet.add("a");
+		courseSet.add("b");
 		
-		userCourses.setUserId("001");
-		TreeSet<String> set = new TreeSet<String>();
-		set.add("a");
-		set.add("b");
-		userCourses.setCoursesSet(set);
+		UserLearnedCourses userCourses = new UserLearnedCourses(userId, courseSet);
 		
 		MongoCollection<Document> collection = MongodbConn.getMongoCollection("mooc", "userCourses");
 		
