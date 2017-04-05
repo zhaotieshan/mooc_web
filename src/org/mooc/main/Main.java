@@ -1,8 +1,8 @@
 package org.mooc.main;
 
-import org.mooc.processing.courses.CrawlerGetCoursesStoreMongodb;
-import org.mooc.processing.logs.ProcesssLogsJsonFileStoreMongodb;
-import org.mooc.processing.users.CrawlerGetUsersStoreMongodb;
+import org.mooc.processing.courses.CrawlCourses;
+import org.mooc.processing.logs.ProcesssLogs;
+import org.mooc.processing.users.CrawlUsers;
 import org.mooc.recommend.frequentPattern.GenerateAprioriDataset;
 import org.mooc.recommend.frequentPattern.GenerateFrequentCourses;
 import org.mooc.recommend.frequentPattern.GenerateFrequentRec;
@@ -20,20 +20,24 @@ public class Main {
 	}
 	
 	static void first(String[] args) {
-		// 数据获取
-		CrawlerGetUsersStoreMongodb.main(args);      // 爬取用户,存入MongoDB
+		/* 用户、课程、日志等数据获取 */
+		CrawlUsers.main(args);      // 爬取用户,存入MongoDB
 		System.out.println("******************************用户信息爬取成功！******************************");
-		CrawlerGetCoursesStoreMongodb.main(args);    // 爬取课程,存入MongoDB
+		
+		CrawlCourses.main(args);    // 爬取课程,存入MongoDB
 		System.out.println("******************************课程信息爬取成功！******************************");
-		ProcesssLogsJsonFileStoreMongodb.main(args); // 读取日志,存入MongoDB,需要在org.mooc.processing.logs.ProcesssLogsJsonFileStoreMongodb中修改日志文件路径
+		
+		ProcesssLogs.main(args); // 读取日志,存入MongoDB,需要在org.mooc.processing.logs.ProcesssLogsJsonFileStoreMongodb中修改日志文件路径
 		System.out.println("******************************日志信息读取成功！******************************");
 		
-		// 频繁项集推荐
+		/* 频繁项集推荐 */
 		GenerateUserLearnedCourses.main(args); // user_learned_courses
 		System.out.println("***************************用户已学课程生成成功！***************************");
+		
 		GenerateAprioriDataset.main(args);     // process the user_learned_courses records into the form that fit the method MyApriori
 		GenerateFrequentCourses.main(args);    // call MyApriori(), generate frequent pattern courses
 		System.out.println("*************************课程频繁项集生成成功！*************************");
+		
 		GenerateFrequentRec.main(args);        // generate frequent recommendations for every user
 		System.out.println("**************************为每个用户生成推荐结果成功！**************************");		
 	}
