@@ -17,18 +17,29 @@ import com.mongodb.client.MongoCollection;
  * Title  : ProcesssLogsJsonFileStoreMongodb
  * Description : 
  */
-public class ProcesssLogsJsonFileStoreMongodb {
+public class ProcesssLogs {
 	static String PATH = "E:\\data\\mooc_logs\\"; // the catalog where logs are stored
 	
-	public static void main(String[] args) {
-		readStoreLogsUntilYesterday(PATH);
+	public static void main(String[] args) {		
 	}
 	
-	static void test() {
-		// test readOneDayLogs()
+	private static void testStoreOneDayLogs() {
 		ArrayList<Document> documents = null;
 		documents = readOneDayLogs("2016-06-08");
-		storeOneDayLogs(documents);
+		ProcesssLogs.storeOneDayLogs(documents);
+	}
+	
+	private static void testReadStoreLogsUntilYesterday() {
+		ProcesssLogs.readStoreLogsUntilYesterday(PATH);
+	}
+	
+	/**
+	 * read and store logs from startDate to endDate
+	 * @param startDate
+	 * @param endDate
+	 */
+	static void readLogs(String startDate, String endDate) {
+		
 	}
 	
 	/**
