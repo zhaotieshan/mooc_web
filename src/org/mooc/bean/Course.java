@@ -9,26 +9,26 @@ import java.util.ArrayList;
  * Description : 
  */
 public class Course {
-	String courseId;
-	String couresName;
-	ArrayList<String> categoryList;
+	private String courseId;
+	private String couresName;
+	private ArrayList<String> categoryList;
+	
+	public Course() {
+	}
+	
+	public Course(String courseId, String couresName, ArrayList<String> categoryList) {
+		this.courseId = courseId;
+		this.couresName = couresName;
+		this.categoryList = categoryList;
+	}
 	
 	public String getCourseId() {
-		return courseId;
-	}
-	public void setCourseId(String courseId) {
-		courseId = courseId;
+		return this.courseId;
 	}
 	public String getCouresName() {
-		return couresName;
-	}
-	public void setCouresName(String couresName) {
-		couresName = couresName;
+		return this.couresName;
 	}
 	public ArrayList<String> getCategoryList() {
-		return categoryList;
-	}
-	public void setCategoryList(ArrayList<String> categoryList) {
-		categoryList = categoryList;
+		return this.categoryList;
 	}
 }

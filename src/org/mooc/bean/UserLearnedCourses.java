@@ -12,16 +12,18 @@ public class UserLearnedCourses {
 	String userId;
 	TreeSet<String> coursesSet; // the elements are distinct and sorted
 	
+	public UserLearnedCourses() {
+	}
+	
+	public UserLearnedCourses(String userId, TreeSet<String> coursesSet) {
+		this.userId = userId;
+		this.coursesSet = coursesSet;
+	}
+	
 	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
 	public TreeSet<String> getCoursesSet() {
 		return coursesSet;
-	}
-	public void setCoursesSet(TreeSet<String> coursesSet) {
-		this.coursesSet = coursesSet;
 	}
 }
