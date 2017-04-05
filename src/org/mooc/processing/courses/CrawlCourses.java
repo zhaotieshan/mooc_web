@@ -1,14 +1,10 @@
 package org.mooc.processing.courses;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-
 import org.bson.Document;
+import org.mooc.utility.APICrawler;
 import org.mooc.utility.MongodbConn;
 
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -18,69 +14,42 @@ import net.sf.json.JSONObject;
  * @date  : 2016年11月23日 下午5:36:47
  * Title  : CrawlerGetAllCourseData
  * Description : Get all courses' data from "http://www.mooc2u.com/API/Open/CourseOpen/GetAllCourseData", 
- *               and store them into mongodb
- *               Until 20171226, totally 126 users!
+ *               then store them into MongoDB.
+ *               Until 20170331, totally 153 courses!
  * Problem : BufferedReader 大小限制 会不会有影响？？？
  */
-public class CrawlerGetCoursesStoreMongodb {
+public class CrawlCourses {
 	
 	public static void main(String[] args) {
+		// CrawlerGetCoursesStoreMongodb.test();
+	}
+	
+	/**
+	 * test this function
+	 */
+	static void test() {
 		String url = "http://www.mooc2u.com/API/Open/CourseOpen/GetAllCourseData";
 		String strCourses = "";
 		
-		strCourses = getCourses(url, "utf-8");
+		strCourses = APICrawler.getApiContent(url, "utf-8");
+		System.out.println(strCourses.length());
+		
 		storeCoursesIntoMongodb(strCourses);
 	}
 	
 	/**
-	 * get all the content and store them into a String 
+	 * store the String, which contains a JSON array of courses, into MongoDB 'mooc.courses'
 	 */
-	static String getCourses(String url,String param) {
-		BufferedReader br = null;
-		InputStreamReader isr = null;
-		String strCourses = "";
+	static void storeCoursesIntoMongodb(String strCourses) {		
+		JSONObject courses = JSONObject.fromObject(strCourses); // transform the String into a JSON object
+		JSONArray jsonArr = courses.getJSONArray("Data"); // and then extract the JSON array from the JSON object
 		
-		try {
-			URL coursesUrl = new URL(url);
-			
-			isr = new InputStreamReader(coursesUrl.openStream(), param);
-			br = new BufferedReader(isr);
-
-			strCourses = br.readLine();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return strCourses;
-	}
-	
-	/**
-	 * store the String, which actually is a big json object, 
-	 * which contains a json array, in which every json object is one course, into mongodb
-	 */
-	static void storeCoursesIntoMongodb(String strCourses) {
-		// transform the String into a Json object, 
-		// and then extract the json array from the json object
-		JSONObject courses = JSONObject.fromObject(strCourses);
-		JSONArray jsonArr = courses.getJSONArray("Data");
-		
-		// connect to the mongodb mooc, and get it's collection courses
+		/* get Collection 'mooc.courses', need to delete the old data */
 		MongoCollection<Document> collection = MongodbConn.getMongoCollection("mooc", "courses");
-		
-		// delete the old data
-		/*MongoCursor<Document> cursor = collections.find().iterator();
-		try {
-			while(cursor.hasNext()) {
-				collections.deleteOne(cursor.next());
-			}
-		} finally {
-			cursor.close();
-		}*/
 		collection.drop();
 		collection = MongodbConn.getMongoCollection("mooc", "courses");
-		
-		// store the json array into the collection courses one by one
-		// transform json object into one mongodb document
+				
+		// store the new data into the Collection 'mooc.courses'
 		Document document = null;
 		for(int i = 0; i < jsonArr.size(); i++) {
 			document = Document.parse(jsonArr.getJSONObject(i).toString());
