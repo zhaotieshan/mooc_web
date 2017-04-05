@@ -19,9 +19,6 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 
-/**
- * Servlet implementation class RecController
- */
 public class FrequentRecController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -72,5 +69,4 @@ public class FrequentRecController extends HttpServlet {
         System.out.println(userId);
         System.out.println(json);
 	}
-
 }
