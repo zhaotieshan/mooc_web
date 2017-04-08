@@ -12,7 +12,7 @@ import org.mooc.recommend.frequentPattern.GenUserLearnedCourses;
 * @author : wuke
 * @date   : 2016年12月26日下午6:38:33
 * Title   : Main
-* Description : 
+* Description : Need to be rewritten.
 */
 public class Main {	
 	public static void main(String[] args) {
