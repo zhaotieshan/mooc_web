@@ -22,13 +22,13 @@ public class CrawlUsers {
 	static String URL = "http://www.mooc2u.com/api/open/user/GetAllUserData";
 	
 	public static void main(String[] args) {
-		// CrawlerGetUsersStoreMongodb.test();
+		CrawlUsers.crawlUsers();
 	}
 	
 	/**
-	 * test this function
+	 * Get users from the API of users.
 	 */
-	static void test() {
+	static void crawlUsers() {
 		String strUsers = "";
 		
 		strUsers = APICrawler.getApiContent(URL, "utf-8");
