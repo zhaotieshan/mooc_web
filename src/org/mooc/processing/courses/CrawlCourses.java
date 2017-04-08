@@ -22,13 +22,13 @@ public class CrawlCourses {
 	static String URL = "http://www.mooc2u.com/API/Open/CourseOpen/GetAllCourseData";
 	
 	public static void main(String[] args) {
-		// CrawlerGetCoursesStoreMongodb.test();
+		CrawlCourses.crawlCourses();
 	}
 	
 	/**
-	 * test this function
+	 * Get courses from the API of courses.
 	 */
-	static void test() {		
+	static void crawlCourses() {		
 		String strCourses = "";
 		
 		strCourses = APICrawler.getApiContent(URL, "utf-8");
@@ -38,13 +38,14 @@ public class CrawlCourses {
 	}
 	
 	/**
-	 * store the String, which contains a JSON array of courses, into MongoDB 'mooc.courses'
+	 * Store the String, which contains a JSON array of courses, into MongoDB 'mooc.courses'
+	 * @param strCourses
 	 */
 	static void storeCoursesIntoMongodb(String strCourses) {		
 		JSONObject courses = JSONObject.fromObject(strCourses); // transform the String into a JSON object
 		JSONArray jsonArr = courses.getJSONArray("Data"); // and then extract the JSON array from the JSON object
 		
-		/* get Collection 'mooc.courses', need to delete the old data */
+		// get Collection 'mooc.courses', need to delete the old data
 		MongoCollection<Document> collection = MongodbConn.getMongoCollection("mooc", "courses");
 		collection.drop();
 		collection = MongodbConn.getMongoCollection("mooc", "courses");
