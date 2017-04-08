@@ -15,7 +15,7 @@ import com.mongodb.client.MongoCollection;
  * @author: wuke 
  * @date  : 2016年12月8日 上午9:04:24
  * Title  : ProcesssLogs
- * Description :  Read and store the logs(store in JSON files) into MongoDB mooc.logs.
+ * Description : Read and store the logs(store in JSON files) into MongoDB mooc.logs.
  * An example,
    {
 	"_id" : ObjectId("58e6ecaa47a3cc2c0cc9af0b"),
@@ -43,7 +43,7 @@ public class ProcesssLogs {
 	static final String PATH = "E:\\data\\mooc_logs\\"; // the catalog where logs are stored
 	
 	public static void main(String[] args) {
-		// ProcesssLogs.intiProcessLogs();
+		ProcesssLogs.initProcessLogs();
 	}
 	
 	/**
