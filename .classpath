@@ -20,13 +20,9 @@
 	<classpathentry kind="lib" path="F:/jar/json/ezmorph-1.0.6.jar"/>
 	<classpathentry kind="lib" path="F:/jar/json/json-lib-2.4-jdk15.jar"/>
 	<classpathentry kind="lib" path="F:/jar/gson-2.7.jar"/>
-	<classpathentry kind="lib" path="F:/jar/mahout-distribution-0.9/mahout-core-0.9.jar"/>
-	<classpathentry kind="lib" path="F:/jar/mahout-distribution-0.9/mahout-core-0.9-job.jar"/>
-	<classpathentry kind="lib" path="F:/jar/mahout-distribution-0.9/mahout-integration-0.9.jar"/>
-	<classpathentry kind="lib" path="F:/jar/mahout-distribution-0.9/mahout-math-0.9.jar"/>
 	<classpathentry kind="lib" path="F:/jar/mysql-connector-java-5.1.40-bin.jar"/>
-	<classpathentry kind="lib" path="F:/jar/slf4j-nop-1.6.1.jar"/>
 	<classpathentry kind="lib" path="F:/jar/servlet-api-2.5.jar"/>
 	<classpathentry kind="lib" path="F:/jar/mongo-java/mongo-java-driver-3.4.0-rc1.jar"/>
+	<classpathentry kind="lib" path="F:/jar/jfinal-scheduler-2.2.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

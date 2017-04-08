@@ -11,22 +11,23 @@ import com.mongodb.client.MongoCollection;
 /**
  * @author: wuke 
  * @date  : 2016年12月22日 上午9:41:33
- * Title  : GenerateFrequentCourses
- * Description : the document in mooc.frequentCourses is like:
+ * Title  : GenFrequentCourses
+ * Description : Generate frequent courses pairs by calling algorithm MyApriori. 
+ * The result namely the Documents in MongoDB mooc.frequentCourses is like:
  * {
- * 	"_id" : ObjectId("585b3403d51d2e0994796bd2"),
- * 	"course1" : "050fb0b8-bffe-4b28-994d-2190debef53b",
- * 	"course2" : "0d7973e0-67b1-4a0a-bbd4-fd2f0d6be887",
- * 	"count" : NumberInt("13")
+ *     "_id" : ObjectId("585b3403d51d2e0994796bd2"),
+ * 	   "course1" : "050fb0b8-bffe-4b28-994d-2190debef53b",
+ * 	   "course2" : "0d7973e0-67b1-4a0a-bbd4-fd2f0d6be887",
+ * 	   "count" : NumberInt("13")
  * }
  */
-public class GenerateFrequentCourses {
+public class GenFrequentCourses {
 	private static final String MONGODB_NAME = "mooc";
 	private static final String COLLECTION_NAME = "frequentCourses";
 	
 	public static void main(String[] args) {
 		// process the logs, then generate the records for Apriori
-		ArrayList<String> dataList = GenerateAprioriDataset.generateRecords();
+		ArrayList<String> dataList = GenAprioriDataset.generateRecords();
 		
 		// generate frequent_two_itemset
 		Map<String, Integer> frequentOneItemsetMap = null;
@@ -35,7 +36,7 @@ public class GenerateFrequentCourses {
 		frequentTwoItemsetMap = MyApriori.countCandidateTwoItemset(dataList, frequentOneItemsetMap);
 		
 		// store the frequent_two_itemset into Mongodb mooc.frequentCourses
-		GenerateFrequentCourses.storeFrequentCoursesMongodb(frequentTwoItemsetMap);
+		GenFrequentCourses.storeFrequentCoursesMongodb(frequentTwoItemsetMap);
 	}
 	
 	static void storeFrequentCoursesMongodb(Map<String, Integer> frequentTwoItemsetMap) {

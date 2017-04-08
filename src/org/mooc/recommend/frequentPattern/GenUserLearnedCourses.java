@@ -17,73 +17,68 @@ import com.mongodb.client.MongoCursor;
 /**
  * @author: wuke 
  * @date  : 2016年12月12日 下午9:06:17
- * Title  : GenerateUserLearnedCoursesSets
- * Description : generate records of user-learned-courses, like:
+ * Title  : GenUserLearnedCourses
+ * Description : Generate records of user-learned-courses, then store them into MongoDB mooc.userCourses.
+ * An example, 
  * {
- * 	  "_id" : ObjectId("5857a528d51d2e46cc5ea749"),
- * 	  "userId" : "b5cfa615-35b0-43ca-a856-6e300949b0f3",
- * 	  "coursesSet" : [
- * 		  "4800fd2b-c9da-4994-af88-95de7c2ef980",
- * 		  "53be568c-af84-4e4d-93f1-b8a4c657598d",
- * 		  "55e5bc18-b09b-4964-bf3e-69dabd1957d4",
- * 		  "65fe9ec6-c084-43a6-970c-97b71a5edba9",
- * 		  "c56bc1f9-cbad-4c55-8a0e-6403bceef936"
- * 	  ]
+ *     "_id" : ObjectId("5857a528d51d2e46cc5ea752"),
+ * 	   "userId" : "a90749a2-0fbf-42b7-b1dd-9d5beb8be0e9",
+ * 	   "coursesSet" : [
+ * 	       "417cc764-ec96-4251-8200-1033ac256b93",
+ * 		   "7c731203-fef5-4b28-95cb-fea534210f97",
+ * 		   "a5fa3d7c-b633-429c-9d58-09e44cfe60de"
+ * 	   ]
  * }
- * 20161227 cost 2121 milliseconds!
+ * This can be apply into both Frequent Pattern and Collaborative Filtering.
  */
 
-public class GenerateUserLearnedCourses {
-	/**
-	 * 
-	 * @param args   
-	 */
+public class GenUserLearnedCourses {
 	public static void main(String[] args) {
-		// first time using for batch processing
-		long start = System.currentTimeMillis();
-		
-		List<Document> logsDocuments = 
-				GenerateUserLearnedCourses.readLogsFromMongodb();
-		Map<String, TreeSet<String>> userCoursesMap = 
-				GenerateUserLearnedCourses.processLogsDocuments(logsDocuments);
-		Map<String, ArrayList<String>> historyUserCoursesMap = 
-				GenerateUserLearnedCourses.readHistoryUserCoursesFromMongodb();
-		Map<String, ArrayList<String>> newUserCoursesMap = 
-				GenerateUserLearnedCourses.mergeUserCourses(historyUserCoursesMap, userCoursesMap);
-		GenerateUserLearnedCourses.storeUserCoursesIntoMongodb(newUserCoursesMap);
-		
-		long cost = System.currentTimeMillis() - start;
-		System.out.println("Cost " + cost + " milliseconds!");
-		
-		// one day
-		/*String date = "";
-		List<Document> logsDocuments = 
-				GenerateUserLearnedCoursesSets.readOneDayLogsFromMongodb(date);
-		Map<String, TreeSet<String>> userCoursesMap = 
-				GenerateUserLearnedCoursesSets.processLogsDocuments(logsDocuments);
-		Map<String, ArrayList<String>> historyUserCoursesMap = 
-				GenerateUserLearnedCoursesSets.readHistoryUserCoursesFromMongodb();
-		Map<String, ArrayList<String>> newUserCoursesMap = 
-				GenerateUserLearnedCoursesSets.mergeUserCourses(historyUserCoursesMap, userCoursesMap);
-		GenerateUserLearnedCoursesSets.storeUserCoursesIntoMongodb(newUserCoursesMap);*/
+		// GenerateUserLearnedCourses.initGenUserLearnedCourses();
 	}
 	
 	/**
-	 * testing
+	 * First time using, process all the records in MongoDB mooc.logs.
 	 */
-	static void test() {
-		// test readOneDayLogsFromMongodb(String date)
-		readOneDayLogsFromMongodb("2016-06-08");
+	private static void initGenUserLearnedCourses() {
+		List<Document> logsDocuments = 
+				GenUserLearnedCourses.readLogsFromMongoDB();
+		Map<String, TreeSet<String>> userCoursesMap = 
+				GenUserLearnedCourses.processLogsDocuments(logsDocuments);
+		Map<String, ArrayList<String>> historyUserCoursesMap = 
+				GenUserLearnedCourses.readHistoryUserCoursesFromMongodb(); // empty
+		Map<String, ArrayList<String>> newUserCoursesMap = 
+				GenUserLearnedCourses.mergeUserCourses(historyUserCoursesMap, userCoursesMap);
+		GenUserLearnedCourses.storeUserCoursesIntoMongodb(newUserCoursesMap);
 	}
 	
 	/**
-	 * Read all the logs from mooc.logs, return a ArrayList of Documents
+	 * Incremental processing user-learned-courses.
+	 */
+	private static void oneDayIncrease(String date) {
+		List<Document> logsDocuments = 
+				GenUserLearnedCourses.readOneDayLogsFromMongodb(date);
+		Map<String, TreeSet<String>> userCoursesMap = 
+				GenUserLearnedCourses.processLogsDocuments(logsDocuments);
+		Map<String, ArrayList<String>> historyUserCoursesMap = 
+				GenUserLearnedCourses.readHistoryUserCoursesFromMongodb();
+		Map<String, ArrayList<String>> newUserCoursesMap = 
+				GenUserLearnedCourses.mergeUserCourses(historyUserCoursesMap, userCoursesMap);
+		GenUserLearnedCourses.storeUserCoursesIntoMongodb(newUserCoursesMap);
+	}
+	
+	/**
+	 * Read all the logs from MongoDB mooc.logs, return a ArrayList of Documents.
+	 * An example, 
+	 * {
+	 *     "url_courseid" : "4800fd2b-c9da-4994-af88-95de7c2ef980", 
+	 *     "url_uid" : "12665686-4e14-4ad8-8d7f-f96badd2f68b"
+	 * }
 	 * @return logsDocuments List<Document> 
 	 */
-	static List<Document> readLogsFromMongodb() {
+	static List<Document> readLogsFromMongoDB() {
 		List<Document> logsDocuments = new ArrayList<Document>();
 		
-		// connect to Mongodb, get collection mooc.logs
 		MongoCollection<Document> collection = MongodbConn.getMongoCollection("mooc", "logs");
 			
 		MongoCursor<Document> cursor = collection.find().iterator();
@@ -92,7 +87,6 @@ public class GenerateUserLearnedCourses {
 			while(cursor.hasNext()) {
 				doc = cursor.next();
 				
-				// just keep the "url_courseid" and "url_uid"
 				Document temp = new Document();
 				temp.append("url_courseid", doc.getString("url_courseid"));
 				temp.append("url_uid", doc.getString("url_uid"));
@@ -102,23 +96,23 @@ public class GenerateUserLearnedCourses {
 			cursor.close();
 		}
 			
-	    System.out.println("Successfully read the all the logs!");
+	    System.out.println("Successfully read the all the logs from MongoDB mooc.logs!");
 		
 		return logsDocuments;
 	}
 	
 	/**
-	 * Read one day's logs from mooc.logs, return a ArrayList of Documents
+	 * Read one day's logs from MongoDB mooc.logs, return a ArrayList of Documents.
 	 * @param date
 	 * @return logsDocuments List<Document> 
 	 */
 	static List<Document> readOneDayLogsFromMongodb(String date) {
 		List<Document> logsDocuments = new ArrayList<Document>();
 		
-		// connect to Mongodb, get collection mooc.logs
 		MongoCollection<Document> collection = MongodbConn.getMongoCollection("mooc", "logs");
-			
-		Pattern pattern = Pattern.compile("^" + date + ".*$"); // 左匹配
+		
+		// "@timestamp" : "2016-06-08T13:05:26.000Z"
+		Pattern pattern = Pattern.compile("^" + date + ".*$");
 		BasicDBObject query = new BasicDBObject();
         query.put("@timestamp",pattern);
         
@@ -128,8 +122,7 @@ public class GenerateUserLearnedCourses {
 		try {
 			while(cursor.hasNext()) {
 				doc = cursor.next();
-				
-				// just keep the "url_courseid" and "url_uid"
+
 				Document temp = new Document();
 				temp.append("url_courseid", doc.getString("url_courseid"));
 				temp.append("url_uid", doc.getString("url_uid"));
@@ -138,15 +131,16 @@ public class GenerateUserLearnedCourses {
 		} finally {
 			cursor.close();
 		}
-		System.out.println(logsDocuments.size());
-	    System.out.println("Successfully read " + date + " logs!");
+		
+		// System.out.println(logsDocuments.size());
+	    System.out.println("Successfully read " + date + " logs from MongoDB mooc.logs!");
 		
 		return logsDocuments;
 	}
 	
 	/**
-	 * process one Document list, store the result into "Map<String, TreeSet<String>> userCoursesMap"
-	 * @param logsDocuments 
+	 * Process the List of Document, store the result into "Map<String, TreeSet<String>> userCoursesMap"
+	 * @param logsDocuments List<Document>
 	 * @return userCoursesMap Map<String, TreeSet<String>>
 	 */
     static Map<String, TreeSet<String>> processLogsDocuments(List<Document> logsDocuments) {
@@ -156,18 +150,17 @@ public class GenerateUserLearnedCourses {
     	
     	String userId = "";
     	String courseId = "";
-    	for(Document doc : logsDocuments) {
+    	for(Document doc : logsDocuments) { // iterate through the List<Doucment> logsDocuments
     		userId = (String) doc.get("url_uid");
     		courseId = (String) doc.get("url_courseid");
     		
     		if((userId != null) && (courseId != null)) {
-				if (userCoursesMap.containsKey(userId)) { // old user
-					// update the course set
+				if (userCoursesMap.containsKey(userId)) { // old user, then update
 					courseSet = userCoursesMap.get(userId);
 					courseSet.add(courseId);
 					
 					userCoursesMap.put(userId, courseSet);				
-				} else { // new user
+				} else { // new user, then add
 					courseSet = new TreeSet<String>();
 					courseSet.add(courseId);
 					
@@ -176,20 +169,20 @@ public class GenerateUserLearnedCourses {
     		}
     	}
     	
-    	System.out.println("Successfully processLogsDocuments()!");
+    	System.out.println("Successfully process List<Document> LogsDocuments!");
+    	
     	return userCoursesMap;
     }
 	
 	/**
-	 * read history records, user-learned-courses collection, form mongodb,
-	 * store into one HashMap historyUserCoursesMap
-	 * notice : TreeSet<String> will change to ArrayList<String> 
-	 * @return
+	 * Read history records(user-learned-courses)form MongoDB,
+	 * then return a HashMap<String, ArrayList<String>> historyUserCoursesMap
+	 * Notice : TreeSet<String> will change to ArrayList<String> 
+	 * @return 
 	 */
 	static Map<String, ArrayList<String>> readHistoryUserCoursesFromMongodb() {
 		Map<String, ArrayList<String>> historyUserCoursesMap = new HashMap<String, ArrayList<String>>();
 		
-		// connect to Mongodb, get collection mooc.userCourses
 		MongoCollection<Document> collection = MongodbConn.getMongoCollection("mooc", "userCourses");
 		
 		MongoCursor<Document> cursor = collection.find().iterator();
@@ -208,9 +201,10 @@ public class GenerateUserLearnedCourses {
 	}
 	
 	/**
-	 * merge the new and old records of user-learned-courses
+	 * Merge the new and old records of user-learned-courses.
 	 * @param historyUserCoursesMap
 	 * @param userCoursesMap
+	 * @return newUserCoursesMap Map<String, ArrayList<String>>
 	 */
 	static Map<String, ArrayList<String>> mergeUserCourses(Map<String, ArrayList<String>> historyUserCoursesMap, 
 			Map<String, TreeSet<String>> userCoursesMap) {
@@ -224,7 +218,7 @@ public class GenerateUserLearnedCourses {
 			key = entry.getKey();
 			
 			if(historyUserCoursesMap.containsKey(key)) { // old user
-				// first merge the ArrayList into TreeSet, then put the result TreeSet into the ArrayList 
+				// first merge the ArrayList into TreeSet, then put the result TreeSet back into the ArrayList 
 				arrayList = historyUserCoursesMap.get(key);
 				treeSet = entry.getValue();
 				
@@ -246,12 +240,13 @@ public class GenerateUserLearnedCourses {
 		}
 		
     	System.out.println("Successfully merge the old and new records of user-learned-courses!");
+    	
 		newUserCoursesMap = historyUserCoursesMap;
 		return newUserCoursesMap;
 	}
 	
 	/**
-	 * store new user_learned_courses records into MongoDB
+	 * Store new user-learned-courses records into MongoDB mooc.userCourses
 	 * @param userCoursesMap Map<String, ArrayList<String>>
 	 */
 	static void storeUserCoursesIntoMongodb(Map<String, ArrayList<String>> userCoursesMap) {
@@ -270,6 +265,6 @@ public class GenerateUserLearnedCourses {
 			collection.insertOne(doc);
 		}
 		
-    	System.out.println("Successfully store the merged records of user-learned-courses!");
+    	System.out.println("Successfully store the new records of user-learned-courses!");
 	}
 }

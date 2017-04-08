@@ -19,6 +19,7 @@ import com.mongodb.client.MongoCollection;
  *               Until 20170331, totally 71029 users!
  */
 public class CrawlUsers {
+	static String URL = "http://www.mooc2u.com/api/open/user/GetAllUserData";
 	
 	public static void main(String[] args) {
 		// CrawlerGetUsersStoreMongodb.test();
@@ -28,10 +29,9 @@ public class CrawlUsers {
 	 * test this function
 	 */
 	static void test() {
-		String url = "http://www.mooc2u.com/api/open/user/GetAllUserData";
 		String strUsers = "";
 		
-		strUsers = APICrawler.getApiContent(url, "utf-8");
+		strUsers = APICrawler.getApiContent(URL, "utf-8");
 		System.out.println(strUsers.length());
 		
 		storeUsersIntoMongodb(strUsers);

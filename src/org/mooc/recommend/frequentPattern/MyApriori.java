@@ -21,7 +21,7 @@ public class MyApriori {
 	private final static double MIN_CONFIDENCE = 0.5; // min support
 	
 	static void test() {
-		ArrayList<String> dataList = GenerateAprioriDataset.generateRecords();
+		ArrayList<String> dataList = GenAprioriDataset.generateRecords();
 		
 		// test MyApriori.findFrequentOneItemset()
 		Map<String, Integer> frequentOneItemsetMap = null;

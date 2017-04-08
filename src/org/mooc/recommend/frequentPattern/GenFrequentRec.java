@@ -17,17 +17,17 @@ import static com.mongodb.client.model.Filters.*;
 * Title   : GenerateFrequentRec
 * Description : 
 */
-public class GenerateFrequentRec {
+public class GenFrequentRec {
 
 	private final static String MONGODB_NAME = "mooc";
 	
 	public static void main(String[] args) {
-		Map<String, ArrayList<String>> userCoursesMap = GenerateFrequentRec.readUserCourses();
+		Map<String, ArrayList<String>> userCoursesMap = GenFrequentRec.readUserCourses();
 		
 		long startTime = System.currentTimeMillis();
 		
 		System.out.println("Start generate frequent recommendations for users!");
-		GenerateFrequentRec.generateFrequentRec(userCoursesMap);
+		GenFrequentRec.generateFrequentRec(userCoursesMap);
 		
 		long cost = System.currentTimeMillis() - startTime;
 		System.out.println("Cost " + cost + " milliseconds!");
@@ -53,7 +53,6 @@ public class GenerateFrequentRec {
 		for(Map.Entry<String, ArrayList<String>> entry : userCoursesMap.entrySet()) {
 			userId = entry.getKey();
 			coursesSet = entry.getValue();
-			
 			
 			// iterate every course the user has learned, search the frequentCourses
 			String course2 = "";

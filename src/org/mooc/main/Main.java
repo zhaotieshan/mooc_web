@@ -3,10 +3,10 @@ package org.mooc.main;
 import org.mooc.processing.courses.CrawlCourses;
 import org.mooc.processing.logs.ProcesssLogs;
 import org.mooc.processing.users.CrawlUsers;
-import org.mooc.recommend.frequentPattern.GenerateAprioriDataset;
-import org.mooc.recommend.frequentPattern.GenerateFrequentCourses;
-import org.mooc.recommend.frequentPattern.GenerateFrequentRec;
-import org.mooc.recommend.frequentPattern.GenerateUserLearnedCourses;
+import org.mooc.recommend.frequentPattern.GenAprioriDataset;
+import org.mooc.recommend.frequentPattern.GenFrequentCourses;
+import org.mooc.recommend.frequentPattern.GenFrequentRec;
+import org.mooc.recommend.frequentPattern.GenUserLearnedCourses;
 
 /**
 * @author : wuke
@@ -31,14 +31,14 @@ public class Main {
 		System.out.println("******************************日志信息读取成功！******************************");
 		
 		/* 频繁项集推荐 */
-		GenerateUserLearnedCourses.main(args); // user_learned_courses
+		GenUserLearnedCourses.main(args); // user_learned_courses
 		System.out.println("***************************用户已学课程生成成功！***************************");
 		
-		GenerateAprioriDataset.main(args);     // process the user_learned_courses records into the form that fit the method MyApriori
-		GenerateFrequentCourses.main(args);    // call MyApriori(), generate frequent pattern courses
+		GenAprioriDataset.main(args);     // process the user_learned_courses records into the form that fit the method MyApriori
+		GenFrequentCourses.main(args);    // call MyApriori(), generate frequent pattern courses
 		System.out.println("*************************课程频繁项集生成成功！*************************");
 		
-		GenerateFrequentRec.main(args);        // generate frequent recommendations for every user
+		GenFrequentRec.main(args);        // generate frequent recommendations for every user
 		System.out.println("**************************为每个用户生成推荐结果成功！**************************");		
 	}
 }

@@ -19,6 +19,7 @@ import net.sf.json.JSONObject;
  * Problem : BufferedReader 大小限制 会不会有影响？？？
  */
 public class CrawlCourses {
+	static String URL = "http://www.mooc2u.com/API/Open/CourseOpen/GetAllCourseData";
 	
 	public static void main(String[] args) {
 		// CrawlerGetCoursesStoreMongodb.test();
@@ -27,11 +28,10 @@ public class CrawlCourses {
 	/**
 	 * test this function
 	 */
-	static void test() {
-		String url = "http://www.mooc2u.com/API/Open/CourseOpen/GetAllCourseData";
+	static void test() {		
 		String strCourses = "";
 		
-		strCourses = APICrawler.getApiContent(url, "utf-8");
+		strCourses = APICrawler.getApiContent(URL, "utf-8");
 		System.out.println(strCourses.length());
 		
 		storeCoursesIntoMongodb(strCourses);
