@@ -7,6 +7,7 @@ import org.bson.Document;
 import org.mooc.utility.MongodbConn;
 
 import com.mongodb.client.MongoCollection;
+import static com.mongodb.client.model.Filters.*;
 
 /**
  * @author: wuke 
@@ -15,17 +16,25 @@ import com.mongodb.client.MongoCollection;
  * Description : Generate frequent courses pairs by calling algorithm MyApriori. 
  * The result namely the Documents in MongoDB mooc.frequentCourses is like:
  * {
- *     "_id" : ObjectId("585b3403d51d2e0994796bd2"),
+ *     "_id" : ObjectId("58ea412d631a4e18b09165a6"),
  * 	   "course1" : "050fb0b8-bffe-4b28-994d-2190debef53b",
+ *     "course1Name" : "µçÂ·",
  * 	   "course2" : "0d7973e0-67b1-4a0a-bbd4-fd2f0d6be887",
+ *     "course2Name" : "CADÖÆÍ¼",
  * 	   "count" : NumberInt("13")
  * }
  */
 public class GenFrequentCourses {
-	private static final String MONGODB_NAME = "mooc";
-	private static final String COLLECTION_NAME = "frequentCourses";
 	
 	public static void main(String[] args) {
+		GenFrequentCourses.genFrequentCourses();
+	}
+	
+	/**
+	 * Call functions in GenAprioriDataset and MyApriori to generate frequent courses pairs, 
+	 * then call function storeFrequentCourses() store the result into MongoDB mooc.frequentCourses.
+	 */
+	static void genFrequentCourses() {
 		// process the logs, then generate the records for Apriori
 		ArrayList<String> dataList = GenAprioriDataset.generateRecords();
 		
@@ -33,18 +42,22 @@ public class GenFrequentCourses {
 		Map<String, Integer> frequentOneItemsetMap = null;
 		Map<String, Integer> frequentTwoItemsetMap = null;
 		frequentOneItemsetMap = MyApriori.findFrequentOneItemset(dataList);
-		frequentTwoItemsetMap = MyApriori.countCandidateTwoItemset(dataList, frequentOneItemsetMap);
+		frequentTwoItemsetMap = MyApriori.findFrequentTwoItemset(dataList, frequentOneItemsetMap);
 		
-		// store the frequent_two_itemset into Mongodb mooc.frequentCourses
-		GenFrequentCourses.storeFrequentCoursesMongodb(frequentTwoItemsetMap);
+		// Store the frequent_two_itemset into Mongodb mooc.frequentCourses
+		GenFrequentCourses.storeFrequentCourses(frequentTwoItemsetMap);
 	}
 	
-	static void storeFrequentCoursesMongodb(Map<String, Integer> frequentTwoItemsetMap) {
-		MongoCollection<Document> collection = MongodbConn.getMongoCollection(MONGODB_NAME, COLLECTION_NAME);
+	/**
+	 * Store the frequent courses pairs into MongoDB mooc.frequentCourses.
+	 * @param frequentTwoItemsetMap
+	 */
+	static void storeFrequentCourses(Map<String, Integer> frequentTwoItemsetMap) {
+		MongoCollection<Document> collection = MongodbConn.getMongoCollection("mooc", "frequentCourses");
 		
 		// drop the old data
 		collection.drop();
-		collection = MongodbConn.getMongoCollection(MONGODB_NAME, COLLECTION_NAME);
+		collection = MongodbConn.getMongoCollection("mooc", "frequentCourses");
 		
 		String course1 = "";
 		String course2 = "";
@@ -57,18 +70,37 @@ public class GenFrequentCourses {
 			count = entry.getValue();
 			
 			doc.append("course1", course1);
+			doc.append("course1Name", GenFrequentCourses.findCourseName(course1));
 			doc.append("course2", course2);
+			doc.append("course2Name", GenFrequentCourses.findCourseName(course2));
 			doc.append("count", count);
 			
 			collection.insertOne(doc);
 			
-			// redundancy, convenient for the calculation of the frequent_courses recommendation
+			// Redundancy, convenient for generating the recommendation
 			doc = new Document();
 			doc.append("course1", course2);
+			doc.append("course1Name", GenFrequentCourses.findCourseName(course2));
 			doc.append("course2", course1);
+			doc.append("course2Name", GenFrequentCourses.findCourseName(course1));
 			doc.append("count", count);
 			
 			collection.insertOne(doc);
 		}
+	}
+	
+	/**
+	 * Using CourseID to get CourseName from MongoDB mooc.courses.
+	 * @param courseID
+	 * @return courseName
+	 */
+	static String findCourseName(String courseID) {
+		String courseName = null;
+		
+		MongoCollection<Document> collection =  MongodbConn.getMongoCollection("mooc", "courses");
+		Document doc = collection.find(eq("CourseID", courseID)).first();
+		
+		courseName = doc.getString("CourseName");
+		return courseName;
 	}
 }
