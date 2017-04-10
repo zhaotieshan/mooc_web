@@ -10,11 +10,11 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-    <servlet-name>rec_info</servlet-name>
-    <servlet-class>org.mooc.controller.FrequentRecController</servlet-class>
+    <servlet-name>fpRec</servlet-name>
+    <servlet-class>org.mooc.controller.FrequentRec</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>rec_info</servlet-name>
-    <url-pattern>/rec_info</url-pattern>
+    <servlet-name>fpRec</servlet-name>
+    <url-pattern>/fpRec</url-pattern>
   </servlet-mapping>
 </web-app>

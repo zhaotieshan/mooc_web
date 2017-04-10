@@ -5,21 +5,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
-import org.mooc.utility.MongodbConn;
+import org.mooc.utility.MongoDBConn;
 
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 
-public class FrequentRecController extends HttpServlet {
+/**
+ * @author: wuke 
+ * @date  : 2016年11月24日 下午5:29:46
+ * Title  : FrequentRec
+ * Description : Servlet. Respond to user's request, like
+ * http://localhost:8080/mooc/fpRec?userId=40f3d4bf-4631-4181-95d4-7714576db407&page=1&pageSize=5
+ */
+public class FrequentRec extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -35,38 +41,44 @@ public class FrequentRecController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		// get userId from request
+		// Get userId and n from HttpServletRequest request
 		String userId = null;
 		userId = request.getParameter("userId");
 		
-		// default userId
-		if(userId == null || userId.isEmpty())
-			userId = "40f3d4bf-4631-4181-95d4-7714576db407"; 
-		
-		// select the user's recommend result from mooc.frequentRec
-		String databaseName = "mooc";
-		String mongoCollectionName = "frequentRec";
-		MongoCollection<Document> collection = MongodbConn.getMongoCollection(databaseName, mongoCollectionName);
+		// Query from MongoDB mooc.frequentRec
+		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "frequentRec");
 		
 		Bson filter = Filters.eq("userId", userId);
-		BasicDBObject sort = new BasicDBObject();
-        sort.put("count",-1); // 1,表示正序； －1,表示倒序
-		List<Document> docList = collection.find(filter).sort(sort).into(new ArrayList<Document>());
 		
-		// Document list 借助 Gson 转化为 String
+		BasicDBObject sort = new BasicDBObject();
+	    sort.put("count",-1); // 1, ascending; －1, descending
+		
+		int page = 0;
+		int pageSize = 0;
+	    List<Document> docList = null;
+		if(request.getParameter("page") != null && request.getParameter("pageSize") !=null) { // Split pages
+			page = Integer.parseInt(request.getParameter("page"));
+			pageSize = Integer.parseInt(request.getParameter("pageSize"));			
+		    
+			docList = collection.find(filter).
+					sort(sort).skip((page -1) * pageSize).limit(pageSize).into(new ArrayList<Document>());
+		} else { // Show all the recommendations
+			docList = collection.find(filter).sort(sort).into(new ArrayList<Document>());
+		}
+		
+		// Transform docList into String by method of Gson
 		String json=null;
 		Gson gson = new Gson();
 		json = gson.toJson(docList);
 		
-		// 发布 json 串到 API
+		// Respond to the request
 		response.setContentType("application/json;charset=utf-8");
 		response.addHeader("Access-Control-Allow-Origin", "*");
-        ServletOutputStream servletOutputStream = response.getOutputStream();
-        servletOutputStream.write(json.getBytes("utf-8"));
+		response.getWriter().write(json);
         
-        // 控制台打印发布的信息
-        System.out.println("客户端的IP地址为：" + request.getRemoteAddr()); // 客户端IP地址       
-        System.out.println(userId);
+        // Print some information to the Console
+		System.out.println("client IP adderss:" + request.getRemoteAddr());
         System.out.println(json);
 	}
+
 }
