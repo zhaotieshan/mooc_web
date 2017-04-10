@@ -1,12 +1,12 @@
 package org.mooc.main;
 
 import org.mooc.processing.courses.CrawlCourses;
+import org.mooc.processing.logs.GenUserLearnedCourses;
 import org.mooc.processing.logs.ProcesssLogs;
 import org.mooc.processing.users.CrawlUsers;
 import org.mooc.recommend.frequentPattern.GenAprioriDataset;
 import org.mooc.recommend.frequentPattern.GenFrequentCourses;
 import org.mooc.recommend.frequentPattern.GenFrequentRec;
-import org.mooc.recommend.frequentPattern.GenUserLearnedCourses;
 
 /**
 * @author : wuke
