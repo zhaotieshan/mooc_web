@@ -17,33 +17,37 @@ import java.util.TreeSet;
  */
 public class MyApriori {
 
-	private final static int MIN_SUPPORT = 5; // min support
-	private final static double MIN_CONFIDENCE = 0.5; // min support
+	private final static int MIN_SUPPORT = 15; // min support
 	
-	static void test() {
+	public static void main(String[] args) {
+		MyApriori.test();
+	}
+	
+	/**
+	 * Tesing.
+	 */
+	private static void test() {
 		ArrayList<String> dataList = GenAprioriDataset.generateRecords();
 		
 		// test MyApriori.findFrequentOneItemset()
-		Map<String, Integer> frequentOneItemsetMap = null;
-		frequentOneItemsetMap = MyApriori.findFrequentOneItemset(dataList);
+		Map<String, Integer> frequentOneItemsetMap = MyApriori.findFrequentOneItemset(dataList);
 		
 		System.out.println(frequentOneItemsetMap.size());
 		for(Map.Entry<String, Integer> entry : frequentOneItemsetMap.entrySet()) {
 			System.out.println(entry.getKey() + " " + entry.getValue());
 		}
 		
-		// test MyApriori.aprioriGenTwoCandidateSets()
-		Set<String> candidateTwoItemset = new TreeSet<String>();
-		candidateTwoItemset = aprioriGenTwoCandidateSets(frequentOneItemsetMap);
+		// test MyApriori.genCandidateTwoItemset()
+		Set<String> candidateTwoItemset = genCandidateTwoItemset(frequentOneItemsetMap);
 		
 		System.out.println(candidateTwoItemset.size());
 		for(String str : candidateTwoItemset) {
 			System.out.println(str);
 		}
 		
-		// test MyApriori.countCandidateTwoItemset()
-		Map<String, Integer> frequentTwoItemsetMap = null;
-		frequentTwoItemsetMap = MyApriori.countCandidateTwoItemset(dataList, frequentOneItemsetMap);
+		// test MyApriori.findFrequentTwoItemset()
+		Map<String, Integer> frequentTwoItemsetMap = MyApriori.findFrequentTwoItemset(dataList, frequentOneItemsetMap);
+		
 		System.out.println(frequentTwoItemsetMap.size());
 		for(Map.Entry<String, Integer> entry : frequentTwoItemsetMap.entrySet()) {
 			System.out.println(entry.getKey() + " " + entry.getValue());
@@ -51,19 +55,19 @@ public class MyApriori {
 	}
 	
 	/**
-	 * find the frequent one itemset
-	 * @param dataList
-	 * @return frequentOneItemset - Map<String, Integer>
+	 * Find the frequent one itemset.
+	 * @param dataList ArrayList<String>
+	 * @return frequentOneItemset Map<String, Integer>
 	 */
 	static Map<String, Integer> findFrequentOneItemset(ArrayList<String> dataList) {
 		Map<String, Integer> candidateOneItemsetMap = new TreeMap<String, Integer>(); // orderly
 		
-		// iterate the dataList, count every item's appearance times
+		// Iterate through the dataList, count every item's appearance times.
 		String[] strArr = null;
 		for(String str : dataList) { // iterate the dataList
 			strArr = str.split(",");
 			
-			for(String temp : strArr) { // iterate one record's items
+			for(String temp : strArr) { 
 				if(candidateOneItemsetMap.containsKey(temp)) {
 					candidateOneItemsetMap.put(temp, candidateOneItemsetMap.get(temp)+1);
 				} else {
@@ -72,41 +76,30 @@ public class MyApriori {
 			}
 		}
 		
-		// judge if the items in candidateOneItemsetMap get support bigger than the MIN_SUPPORT
-		Map<String, Integer> frequentOneItemsetMap = candidateOneItemsetMap;
-		
-		Iterator<Map.Entry<String, Integer>> iter = frequentOneItemsetMap.entrySet().iterator();
-		while(iter.hasNext()) {
-			Map.Entry<String, Integer> entry = iter.next();
-			if(entry.getValue() < MIN_SUPPORT) { // smaller, delete the item
-				iter.remove();
-			}
-		}
-		
-		return frequentOneItemsetMap;
+		// Return the items in candidate set which satisfy the MIN_SUPPORT
+		return MyApriori.minSupport(candidateOneItemsetMap);
 	}
 	
 	/**
-	 * iterate the dataList, count the appearance of the candidateTwoItemset,
-	 * then compare with the MIN_SUPPORT, return the 
+	 * Find the frequent two itemset.
 	 * @param dataList
 	 * @param frequentOneItemset
 	 * @return 
 	 */
-	static Map<String, Integer> countCandidateTwoItemset(ArrayList<String> dataList, 
+	static Map<String, Integer> findFrequentTwoItemset(ArrayList<String> dataList, 
 			Map<String, Integer> frequentOneItemset) {
-		Set<String> candidateTwoItemset = new TreeSet<String>();
-		candidateTwoItemset = aprioriGenTwoCandidateSets(frequentOneItemset);
+		Set<String> candidateTwoItemset = genCandidateTwoItemset(frequentOneItemset);
 		
 		Map<String, Integer> candidateTwoItemsetMap = new TreeMap<String, Integer>();
 		
-		for(String data : dataList) {
-			for(String candidate : candidateTwoItemset) {
+		// Count the appearance times of the two itemset in the dataList.
+		for(String candidate : candidateTwoItemset) { 
+			for(String data : dataList) {
 				boolean flag = true;
 				
 				String[] items = candidate.split(",");
 				for(String str : items) {
-					if(data.indexOf(str) == (-1)) {
+					if(data.indexOf(str) == (-1)) { // one of the two items is not in the record "data"
 						flag = false;
 						break;
 					}
@@ -121,27 +114,17 @@ public class MyApriori {
 			}
 		}
 		
-		// judge if the items in candidateTwoItemsetMap get support bigger than the MIN_SUPPORT
-		Map<String, Integer> frequentTwoItemsetMap = candidateTwoItemsetMap;
-		
-		Iterator<Map.Entry<String, Integer>> iter = frequentTwoItemsetMap.entrySet().iterator();
-		while(iter.hasNext()) {
-			Map.Entry<String, Integer> entry = iter.next();
-			if(entry.getValue() < MIN_SUPPORT) { // smaller, delete the item
-				iter.remove();
-			}
-		}
-		
-		return frequentTwoItemsetMap;
+		// Return the items in candidate set which satisfy the MIN_SUPPORT
+		return MyApriori.minSupport(candidateTwoItemsetMap);
 	}
 	
 	/**
-	 * 
+	 * Using the frequent one itemset to generate candidate two itemset.
 	 * @param frequentOneItemset
 	 * @return candidateTwoItemset
 	 */
-	static Set<String> aprioriGenTwoCandidateSets(Map<String, Integer> frequentOneItemset) {
-		Set<String> candidateTwoItemset = new TreeSet<String>();
+	static Set<String> genCandidateTwoItemset(Map<String, Integer> frequentOneItemset) {
+		Set<String> candidateTwoItemSet = new TreeSet<String>();
 		
 		for(Map.Entry<String, Integer> entry1 : frequentOneItemset.entrySet()) {
 			String str1 = entry1.getKey();
@@ -152,32 +135,28 @@ public class MyApriori {
 				StringBuilder temp = new StringBuilder();
 				if(str1.compareTo(str2) < 0) {
 					temp.append(str1).append(",").append(str2);
-					candidateTwoItemset.add(temp.toString()); // 连接步
+					candidateTwoItemSet.add(temp.toString()); // 连接步
 				}
 			}
 		}
 		
-		return candidateTwoItemset;
+		return candidateTwoItemSet;
 	}
 	
 	/**
-	 * 
-	 * @param frequentKMinusOneItemset
-	 * @return candidateItemset
-	 */
-	static Map<String, Integer> aprioriGen(Map<String, Integer> frequentKMinusOneItemset) {
-		Map<String, Integer> candidateItemset = new HashMap<String, Integer>();
-		// ...
-		return candidateItemset;
-	}
-	
-	/**
-	 * 
-	 * @param candidateItem
-	 * @param frequentKMinusOneSets
+	 * Judge if the items in candidate itemset satisfy the MIN_SUPPORT. If don't, remove it.
+	 * @param subject
 	 * @return
 	 */
-	static boolean hasInfrequentSubset(String candidateItem, Map<String, Integer> frequentKMinusOneItemset) {
-		return true;
+	static Map<String, Integer> minSupport(Map<String, Integer> subject) {
+		Iterator<Map.Entry<String, Integer>> iter = subject.entrySet().iterator();
+		while(iter.hasNext()) {
+			Map.Entry<String, Integer> entry = iter.next();
+			if(entry.getValue() < MIN_SUPPORT) { // smaller, delete the item
+				iter.remove();
+			}
+		}
+		
+		return subject;
 	}
 }
