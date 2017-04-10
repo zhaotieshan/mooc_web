@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import org.bson.Document;
-import org.mooc.utility.MongodbConn;
+import org.mooc.utility.MongoDBConn;
 
 import com.mongodb.client.MongoCollection;
 import static com.mongodb.client.model.Filters.*;
@@ -53,11 +53,11 @@ public class GenFrequentCourses {
 	 * @param frequentTwoItemsetMap
 	 */
 	static void storeFrequentCourses(Map<String, Integer> frequentTwoItemsetMap) {
-		MongoCollection<Document> collection = MongodbConn.getMongoCollection("mooc", "frequentCourses");
+		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "frequentCourses");
 		
 		// drop the old data
 		collection.drop();
-		collection = MongodbConn.getMongoCollection("mooc", "frequentCourses");
+		collection = MongoDBConn.getMongoCollection("mooc", "frequentCourses");
 		
 		String course1 = "";
 		String course2 = "";
@@ -97,7 +97,7 @@ public class GenFrequentCourses {
 	static String findCourseName(String courseID) {
 		String courseName = null;
 		
-		MongoCollection<Document> collection =  MongodbConn.getMongoCollection("mooc", "courses");
+		MongoCollection<Document> collection =  MongoDBConn.getMongoCollection("mooc", "courses");
 		Document doc = collection.find(eq("CourseID", courseID)).first();
 		
 		courseName = doc.getString("CourseName");

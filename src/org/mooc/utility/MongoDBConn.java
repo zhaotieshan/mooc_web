@@ -10,7 +10,7 @@ import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
-public class MongodbConn {
+public class MongoDBConn {
     public static MongoCollection<Document> getMongoCollection(String databaseName, String mongodbCollectionName){
     	ServerAddress ip = new ServerAddress("localhost",27017);
     	String userName = "root";

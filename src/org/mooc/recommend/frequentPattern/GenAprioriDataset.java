@@ -3,7 +3,7 @@ package org.mooc.recommend.frequentPattern;
 import java.util.ArrayList;
 
 import org.bson.Document;
-import org.mooc.utility.MongodbConn;
+import org.mooc.utility.MongoDBConn;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -55,7 +55,7 @@ public class GenAprioriDataset {
 		ArrayList<String> temp = new ArrayList<String>();
 		StringBuilder stringBuilder = null;
 		
-		MongoCollection<Document> collection = MongodbConn.getMongoCollection("mooc", "userCourses");
+		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "userCourses");
 		Document doc = null;
 		MongoCursor<Document> cursor = collection.find().iterator();
 		try {

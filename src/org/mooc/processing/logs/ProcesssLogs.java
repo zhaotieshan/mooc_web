@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import org.bson.Document;
-import org.mooc.utility.MongodbConn;
+import org.mooc.utility.MongoDBConn;
 
 import com.mongodb.client.MongoCollection;
 
@@ -119,7 +119,7 @@ public class ProcesssLogs {
 	 * @param documents an ArrayList of Document
 	 */
 	static void storeOneDayLogs(ArrayList<Document> documents) {
-		MongoCollection<Document> logsCollection = MongodbConn.getMongoCollection("mooc", "logs");
+		MongoCollection<Document> logsCollection = MongoDBConn.getMongoCollection("mooc", "logs");
 		
 		logsCollection.insertMany(documents);
 	}

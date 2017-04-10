@@ -5,7 +5,7 @@ import net.sf.json.JSONObject;
 
 import org.bson.Document;
 import org.mooc.utility.APICrawler;
-import org.mooc.utility.MongodbConn;
+import org.mooc.utility.MongoDBConn;
 
 import com.mongodb.client.MongoCollection;
 
@@ -45,9 +45,9 @@ public class CrawlUsers {
 		JSONArray jsonArr = users.getJSONArray("Data"); // extract the JSON array from the JSON object
 		
 		/* get Collection 'mooc.users', need to delete the old data */
-		MongoCollection<Document> collection = MongodbConn.getMongoCollection("mooc", "users");
+		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "users");
         collection.drop();
-        collection = MongodbConn.getMongoCollection("mooc", "users");
+        collection = MongoDBConn.getMongoCollection("mooc", "users");
         
 		// store the new data into the Collection 'mooc.users'
 		Document document = null;
