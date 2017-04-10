@@ -1,15 +1,36 @@
-/**
-* MOOC中国个性化推荐部分
-*/
-1 功能
-  1.1 已有
-       频繁二项集推荐
-  1.2 待添加
-      协同过滤推荐
-  
-2 代码优化
-  org.mooc.bean 部分
-  org.mooc.processing.courses 部分
-  org.mooc.processing.users 部分
-  org.mooc.utility 部分
-  
+[toc]
+# MOOC中国个性化推荐部分
+## 1 功能
+* 已有
+ * 频繁二项集推荐
+* 待添加
+ * 聚类&分类
+ * 协同过滤推荐
+## 2 代码优化
+* **org.mooc.bean**
+ * 添加构造方法，删除 Setters
+* **org.mooc.processing**
+ * 简化类名为 CrawlCourses，剥离 API 访问函数（添加 APICrawler），简化注释
+ * 简化类名为 CrawlUsers，剥离 API 访问函数（添加 APICrawler），简化注释
+ * 简化类名为 ProcessLogs，重命名方法 initProcessLogs()，添加方法 oneDayIncrease(String date)
+* **org.mooc.recommend.frequentPattern**
+ * 删除未使用类 _GenerateUserLearnedCourses(代替类为 GenUserLearnedCourses)
+ * GenUserLearnedCourses，确定方法initGenUserLearnedCourses()和oneDayIncrease(String date)
+ * GenAprioriDataset，添加注释
+ * MyApriori，方法修改，注释修改
+ * GenFrequentCourses，添加方法 findCourseName()
+ * GenFrequentRec，删除未使用方法 readFrequentCourses()，添加过滤规则（剔除用户已观看过的）
+* **org.mooc.utility**
+ * 添加 APICrawler
+ * 修改 MongodbConn，添加验证连接（用户名，密码）
+ * 删除未使用类 MySqlConn 和 JavaBeanToDocument
+## 3 待修改
+* **org.mooc.controller**
+ * 添加“换一批”功能，简单的下 N 个
+ * RESTful API
+* **org.mooc.main**
+## 4 待改进
+* 频繁二项集推荐
+ * user learned courses 应该改为用户选修的课程，因为某一次的点击不能代表什么，或者就是有点击的次数下限
+* 数据安全问题
+ * 每次都会删除旧数据，然后处理在存入新数据，这样会有丢失数据的隐患 
