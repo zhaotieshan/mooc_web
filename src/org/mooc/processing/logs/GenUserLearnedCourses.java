@@ -1,4 +1,4 @@
-package org.mooc.recommend.frequentPattern;
+package org.mooc.processing.logs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
