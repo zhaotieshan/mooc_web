@@ -13,16 +13,21 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="F:/jar/json/commons-beanutils-1.8.0.jar"/>
-	<classpathentry kind="lib" path="F:/jar/json/commons-collections-3.2.1.jar"/>
-	<classpathentry kind="lib" path="F:/jar/json/commons-lang-2.5.jar"/>
-	<classpathentry kind="lib" path="F:/jar/json/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="F:/jar/json/ezmorph-1.0.6.jar"/>
-	<classpathentry kind="lib" path="F:/jar/json/json-lib-2.4-jdk15.jar"/>
-	<classpathentry kind="lib" path="F:/jar/gson-2.7.jar"/>
-	<classpathentry kind="lib" path="F:/jar/mysql-connector-java-5.1.40-bin.jar"/>
-	<classpathentry kind="lib" path="F:/jar/servlet-api-2.5.jar"/>
-	<classpathentry kind="lib" path="F:/jar/mongo-java/mongo-java-driver-3.4.0-rc1.jar"/>
-	<classpathentry kind="lib" path="F:/jar/jfinal-scheduler-2.2.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cron4j-2.2.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gson-2.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/guava-20.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javassist-3.21.0-GA.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jfinal-2.2-java8-v8.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jfinal-scheduler-3.0.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mongo-java-driver-3.3.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.40-bin.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/reflections-0.9.10.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/servlet-api-2.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ezmorph-1.0.6.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
