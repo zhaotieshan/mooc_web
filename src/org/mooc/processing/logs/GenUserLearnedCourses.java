@@ -40,7 +40,7 @@ public class GenUserLearnedCourses {
 	/**
 	 * First time using, process all the records in MongoDB mooc.logs.
 	 */
-	private static void initGenUserLearnedCourses() {
+	public static void initGenUserLearnedCourses() {
 		List<Document> logsDocuments = 
 				GenUserLearnedCourses.readLogsFromMongoDB();
 		Map<String, TreeSet<String>> userCoursesMap = 
@@ -55,7 +55,7 @@ public class GenUserLearnedCourses {
 	/**
 	 * Incremental processing user-learned-courses.
 	 */
-	private static void oneDayIncrease(String date) {
+	public static void oneDayIncrease(String date) {
 		List<Document> logsDocuments = 
 				GenUserLearnedCourses.readOneDayLogsFromMongodb(date);
 		Map<String, TreeSet<String>> userCoursesMap = 
@@ -76,7 +76,7 @@ public class GenUserLearnedCourses {
 	 * }
 	 * @return logsDocuments List<Document> 
 	 */
-	static List<Document> readLogsFromMongoDB() {
+	private static List<Document> readLogsFromMongoDB() {
 		List<Document> logsDocuments = new ArrayList<Document>();
 		
 		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "logs");
@@ -106,7 +106,7 @@ public class GenUserLearnedCourses {
 	 * @param date
 	 * @return logsDocuments List<Document> 
 	 */
-	static List<Document> readOneDayLogsFromMongodb(String date) {
+	private static List<Document> readOneDayLogsFromMongodb(String date) {
 		List<Document> logsDocuments = new ArrayList<Document>();
 		
 		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "logs");
@@ -143,7 +143,7 @@ public class GenUserLearnedCourses {
 	 * @param logsDocuments List<Document>
 	 * @return userCoursesMap Map<String, TreeSet<String>>
 	 */
-    static Map<String, TreeSet<String>> processLogsDocuments(List<Document> logsDocuments) {
+	private static Map<String, TreeSet<String>> processLogsDocuments(List<Document> logsDocuments) {
     	Map<String, TreeSet<String>> userCoursesMap = new HashMap<String, TreeSet<String>>();
     	
     	TreeSet<String> courseSet = null;
@@ -180,7 +180,7 @@ public class GenUserLearnedCourses {
 	 * Notice : TreeSet<String> will change to ArrayList<String> 
 	 * @return 
 	 */
-	static Map<String, ArrayList<String>> readHistoryUserCoursesFromMongodb() {
+    private static Map<String, ArrayList<String>> readHistoryUserCoursesFromMongodb() {
 		Map<String, ArrayList<String>> historyUserCoursesMap = new HashMap<String, ArrayList<String>>();
 		
 		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "userCourses");
@@ -206,7 +206,7 @@ public class GenUserLearnedCourses {
 	 * @param userCoursesMap
 	 * @return newUserCoursesMap Map<String, ArrayList<String>>
 	 */
-	static Map<String, ArrayList<String>> mergeUserCourses(Map<String, ArrayList<String>> historyUserCoursesMap, 
+	private static Map<String, ArrayList<String>> mergeUserCourses(Map<String, ArrayList<String>> historyUserCoursesMap, 
 			Map<String, TreeSet<String>> userCoursesMap) {
 		Map<String, ArrayList<String>> newUserCoursesMap = null;
 		
@@ -249,7 +249,7 @@ public class GenUserLearnedCourses {
 	 * Store new user-learned-courses records into MongoDB mooc.userCourses
 	 * @param userCoursesMap Map<String, ArrayList<String>>
 	 */
-	static void storeUserCoursesIntoMongodb(Map<String, ArrayList<String>> userCoursesMap) {
+	private static void storeUserCoursesIntoMongodb(Map<String, ArrayList<String>> userCoursesMap) {
 		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "userCourses");
 		
 		collection.drop(); // delete the old data
