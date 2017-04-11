@@ -28,9 +28,9 @@ import com.mongodb.client.MongoCursor;
  */
 public class GenAprioriDataset {
 	public static void main(String[] args) {		
-		ArrayList<String> apripriRecords = GenAprioriDataset.generateRecords();
+		// ArrayList<String> apripriRecords = GenAprioriDataset.generateRecords();
 		
-		/*System.out.println(apripriRecords.size()); // 1074
+		/*System.out.println(apripriRecords.size());
 		for(String str : apripriRecords) {
 			System.out.println(str);
 		}*/
@@ -49,7 +49,7 @@ public class GenAprioriDataset {
      * }
 	 * @return apripriRecords ArrayList<String>
 	 */
-	static ArrayList<String> generateRecords() {
+	public static ArrayList<String> generateRecords() {
 		ArrayList<String> apripriRecords = new ArrayList<String>();
 		
 		ArrayList<String> temp = new ArrayList<String>();

@@ -27,14 +27,14 @@ import static com.mongodb.client.model.Filters.*;
 public class GenFrequentCourses {
 	
 	public static void main(String[] args) {
-		GenFrequentCourses.genFrequentCourses();
+		// GenFrequentCourses.genFrequentCourses();
 	}
 	
 	/**
 	 * Call functions in GenAprioriDataset and MyApriori to generate frequent courses pairs, 
 	 * then call function storeFrequentCourses() store the result into MongoDB mooc.frequentCourses.
 	 */
-	static void genFrequentCourses() {
+	public static void genFrequentCourses() {
 		// process the logs, then generate the records for Apriori
 		ArrayList<String> dataList = GenAprioriDataset.generateRecords();
 		
@@ -52,7 +52,7 @@ public class GenFrequentCourses {
 	 * Store the frequent courses pairs into MongoDB mooc.frequentCourses.
 	 * @param frequentTwoItemsetMap
 	 */
-	static void storeFrequentCourses(Map<String, Integer> frequentTwoItemsetMap) {
+	private static void storeFrequentCourses(Map<String, Integer> frequentTwoItemsetMap) {
 		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "frequentCourses");
 		
 		// drop the old data
@@ -94,7 +94,7 @@ public class GenFrequentCourses {
 	 * @param courseID
 	 * @return courseName
 	 */
-	static String findCourseName(String courseID) {
+	private static String findCourseName(String courseID) {
 		String courseName = null;
 		
 		MongoCollection<Document> collection =  MongoDBConn.getMongoCollection("mooc", "courses");

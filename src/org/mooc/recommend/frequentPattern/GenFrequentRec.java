@@ -20,7 +20,7 @@ import static com.mongodb.client.model.Filters.*;
 public class GenFrequentRec {
 	
 	public static void main(String[] args) {
-		GenFrequentRec.generateFrequentRec(GenFrequentRec.readUserCourses());
+		// GenFrequentRec.generateFrequentRec();
 	}
 	
 	/**
@@ -37,7 +37,9 @@ public class GenFrequentRec {
 	 *     "count" : NumberInt("18")
 	 * }
 	 */
-	static void generateFrequentRec(Map<String, ArrayList<String>> userCoursesMap) {
+	public static void generateFrequentRec() {
+		Map<String, ArrayList<String>> userCoursesMap = GenFrequentRec.readUserCourses();
+		
 		MongoCollection<Document> frequentRec_collection = 
 				MongoDBConn.getMongoCollection("mooc", "frequentRec");
 		frequentRec_collection.drop(); // delete the old data
@@ -97,7 +99,7 @@ public class GenFrequentRec {
 	 * @return userCoursesMap
 	 */
 	@SuppressWarnings("unchecked")
-	static Map<String, ArrayList<String>> readUserCourses() {
+	private static Map<String, ArrayList<String>> readUserCourses() {
 		Map<String, ArrayList<String>> userCoursesMap = new HashMap<String, ArrayList<String>>();
 		
 		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "userCourses");
