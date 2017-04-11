@@ -39,28 +39,28 @@ import com.mongodb.client.MongoCollection;
 	"url_uid" : "12665686-4e14-4ad8-8d7f-f96badd2f68b"
    }
  */
-public class ProcesssLogs {
+public class ProcessLogs {
 	static final String PATH = "E:\\data\\mooc_logs\\"; // the catalog where logs are stored
 	
 	public static void main(String[] args) {
-		ProcesssLogs.initProcessLogs();
+		ProcessLogs.initProcessLogs();
 	}
 	
 	/**
 	 * Incremental processing logs.
 	 */
-	private static void oneDayIncrease(String date) {
+	public static void oneDayIncrease(String date) {
 		ArrayList<Document> documents = null;
 		
 		documents = readOneDayLogs(date);
 		
-		ProcesssLogs.storeOneDayLogs(documents);
+		ProcessLogs.storeOneDayLogs(documents);
 	}
 	
 	/**
 	 * First time using, process all the logs, which are stored in the catalog PATH.
 	 */
-	static void initProcessLogs() {
+	public static void initProcessLogs() {
 		File file = new File(PATH);
 		File[] array = file.listFiles();
 		
@@ -85,7 +85,7 @@ public class ProcesssLogs {
 	 * @param date which day's logs to be read
 	 * @return logsDocuments a ArrayList of Document
 	 */
-	static ArrayList<Document> readOneDayLogs(String date) {
+	private static ArrayList<Document> readOneDayLogs(String date) {
 		String tempPath = PATH + date + ".json"; // the path of the JSON file
 		
 		ArrayList<Document> logsDocuments = new ArrayList<Document>();
@@ -118,7 +118,7 @@ public class ProcesssLogs {
 	 * Store an ArrayList of logs documents, which is actually one day's logs
 	 * @param documents an ArrayList of Document
 	 */
-	static void storeOneDayLogs(ArrayList<Document> documents) {
+	private static void storeOneDayLogs(ArrayList<Document> documents) {
 		MongoCollection<Document> logsCollection = MongoDBConn.getMongoCollection("mooc", "logs");
 		
 		logsCollection.insertMany(documents);

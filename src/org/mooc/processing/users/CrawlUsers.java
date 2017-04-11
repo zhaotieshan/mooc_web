@@ -22,13 +22,13 @@ public class CrawlUsers {
 	static String URL = "http://www.mooc2u.com/api/open/user/GetAllUserData";
 	
 	public static void main(String[] args) {
-		CrawlUsers.crawlUsers();
+		// CrawlUsers.crawlUsers();
 	}
 	
 	/**
 	 * Get users from the API of users.
 	 */
-	static void crawlUsers() {
+	public static void crawlUsers() {
 		String strUsers = "";
 		
 		strUsers = APICrawler.getApiContent(URL, "utf-8");
@@ -40,7 +40,7 @@ public class CrawlUsers {
 	/**
 	 * store the String, which contains a JSON array of users, into MongoDB 'mooc.users'
 	 */
-	static void storeUsersIntoMongodb(String strUsers) {
+	private static void storeUsersIntoMongodb(String strUsers) {
 		JSONObject users = JSONObject.fromObject(strUsers); // transform the String into a JSON object
 		JSONArray jsonArr = users.getJSONArray("Data"); // extract the JSON array from the JSON object
 		
