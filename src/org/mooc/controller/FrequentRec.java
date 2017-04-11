@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
+import org.mooc.main.InitializeMooc;
 import org.mooc.utility.MongoDBConn;
 
 import com.google.gson.Gson;
@@ -27,6 +28,11 @@ import com.mongodb.client.model.Filters;
  */
 public class FrequentRec extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	@Override
+	public void init( ) throws ServletException {
+		InitializeMooc.initMooc();
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
