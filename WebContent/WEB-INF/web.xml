@@ -17,4 +17,9 @@
     <servlet-name>fpRec</servlet-name>
     <url-pattern>/fpRec</url-pattern>
   </servlet-mapping>
+  
+  <listener>  
+    <listener-class>org.mooc.controller.StartTimerListener</listener-class>  
+  </listener> 
+  
 </web-app>
