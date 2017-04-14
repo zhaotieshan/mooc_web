@@ -12,11 +12,11 @@ import org.mooc.recommend.frequentPattern.GenFrequentRec;
 * @author : wuke
 * @date : 2017年4月11日下午4:27:16
 * Title : MoocInit
-* Description : 
+* Description : Initialize the Web Service, which is called in Class InitListener.
 */
 public class InitializeMooc {
 	public static void initMooc() {
-		/* 用户、课程信息获取 & 日志数据处理 */
+		
 		// CrawlUsers.crawlUsers(); // Not use yet.
 		// System.out.println("******************** 用户信息爬取成功！********************");
 		
@@ -28,8 +28,7 @@ public class InitializeMooc {
 		
 		GenUserLearnedCourses.initGenUserLearnedCourses();
 		System.out.println("******************** 用户已学课程生成成功！********************");
-		
-		/* 频繁项集推荐 */		
+			
 		GenAprioriDataset.generateRecords();
 		GenFrequentCourses.genFrequentCourses();
 		System.out.println("******************** 课程频繁二项集生成成功！********************");
