@@ -1,34 +1,34 @@
 [toc]
-# MOOCÖĞ¹ú¸öĞÔ»¯ÍÆ¼ö²¿·Ö
-## 1 ¹¦ÄÜ
-* ÒÑÓĞ
- * Æµ·±¶şÏî¼¯ÍÆ¼ö
-* ´ıÌí¼Ó
- * ¾ÛÀà&·ÖÀà
- * Ğ­Í¬¹ıÂËÍÆ¼ö
-## 2 ´úÂëÓÅ»¯
+# MOOCä¸­å›½ä¸ªæ€§åŒ–æ¨èéƒ¨åˆ†
+## 1 åŠŸèƒ½
+* å·²æœ‰
+ * é¢‘ç¹äºŒé¡¹é›†æ¨è
+* å¾…æ·»åŠ 
+ * èšç±»&åˆ†ç±»
+ * ååŒè¿‡æ»¤æ¨è
+## 2 ä»£ç ä¼˜åŒ–
 * **org.mooc.bean**
- * Ìí¼Ó¹¹Ôì·½·¨£¬É¾³ı Setters
+ * æ·»åŠ æ„é€ æ–¹æ³•ï¼Œåˆ é™¤ Setters
 * **org.mooc.processing**
- * ¼ò»¯ÀàÃûÎª CrawlCourses£¬°şÀë API ·ÃÎÊº¯Êı£¨Ìí¼Ó APICrawler£©£¬¼ò»¯×¢ÊÍ
- * ¼ò»¯ÀàÃûÎª CrawlUsers£¬°şÀë API ·ÃÎÊº¯Êı£¨Ìí¼Ó APICrawler£©£¬¼ò»¯×¢ÊÍ
- * ¼ò»¯ÀàÃûÎª ProcessLogs£¬ÖØÃüÃû·½·¨ initProcessLogs()£¬Ìí¼Ó·½·¨ oneDayIncrease(String date)
- * GenUserLearnedCourses£¬·½·¨initGenUserLearnedCourses()ºÍoneDayIncrease(String date)
+ * ç®€åŒ–ç±»åä¸º CrawlCoursesï¼Œå‰¥ç¦» API è®¿é—®å‡½æ•°ï¼ˆæ·»åŠ  APICrawlerï¼‰ï¼Œç®€åŒ–æ³¨é‡Š
+ * ç®€åŒ–ç±»åä¸º CrawlUsersï¼Œå‰¥ç¦» API è®¿é—®å‡½æ•°ï¼ˆæ·»åŠ  APICrawlerï¼‰ï¼Œç®€åŒ–æ³¨é‡Š
+ * ç®€åŒ–ç±»åä¸º ProcessLogsï¼Œé‡å‘½åæ–¹æ³• initProcessLogs()ï¼Œæ·»åŠ æ–¹æ³• oneDayIncrease(String date)
+ * GenUserLearnedCoursesï¼Œæ–¹æ³•initGenUserLearnedCourses()å’ŒoneDayIncrease(String date)
 * **org.mooc.controller**
- * FrequentRec£¬Ìí¼Ó¡°»»Ò»Åú¡±¹¦ÄÜ£¬¼òµ¥µÄÏÂ N ¸ö
- * InitializeMOOC£¬¸ºÔğÏîÄ¿³õ´ÎÆô¶¯µÄ³õÊ¼»¯¹¤×÷£¬°üº¬ÈÕÖ¾´¦Àí£¬¿Î³ÌĞÅÏ¢ÅÀÈ¡£¬ÀûÓÃ¹ØÁª¹æÔòÍÆ¼öËã·¨ÎªÓÃ»§Éú³ÉÍÆ¼ö¿Î³ÌµÈ
- * TimerListener¡¢UpdateManagerºÍUpdate×éºÏÊµÏÖ¶¨Ê±ÈÎÎñ£¬Ã¿Ìì¶¨Ê±½øĞĞÈÕÖ¾¸üĞÂ¼°ÍÆ¼ö½á¹û¸üĞÂ²Ù×÷
+ * FrequentRecï¼Œæ·»åŠ â€œæ¢ä¸€æ‰¹â€åŠŸèƒ½ï¼Œç®€å•çš„ä¸‹ N ä¸ª
+ * InitializeMOOCï¼Œè´Ÿè´£é¡¹ç›®åˆæ¬¡å¯åŠ¨çš„åˆå§‹åŒ–å·¥ä½œï¼ŒåŒ…å«æ—¥å¿—å¤„ç†ï¼Œè¯¾ç¨‹ä¿¡æ¯çˆ¬å–ï¼Œåˆ©ç”¨å…³è”è§„åˆ™æ¨èç®—æ³•ä¸ºç”¨æˆ·ç”Ÿæˆæ¨èè¯¾ç¨‹ç­‰
+ * TimerListenerã€UpdateManagerå’ŒUpdateç»„åˆå®ç°å®šæ—¶ä»»åŠ¡ï¼Œæ¯å¤©å®šæ—¶è¿›è¡Œæ—¥å¿—æ›´æ–°åŠæ¨èç»“æœæ›´æ–°æ“ä½œ
 * **org.mooc.recommend.frequentPattern**
- * GenAprioriDataset£¬Ìí¼Ó×¢ÊÍ
- * MyApriori£¬·½·¨ĞŞ¸Ä£¬×¢ÊÍĞŞ¸Ä
- * GenFrequentCourses£¬Ìí¼Ó·½·¨ findCourseName()
- * GenFrequentRec£¬É¾³ıÎ´Ê¹ÓÃ·½·¨ readFrequentCourses()£¬Ìí¼Ó¹ıÂË¹æÔò£¨ÌŞ³ıÓÃ»§ÒÑ¹Û¿´¹ıµÄ£©
+ * GenAprioriDatasetï¼Œæ·»åŠ æ³¨é‡Š
+ * MyAprioriï¼Œæ–¹æ³•ä¿®æ”¹ï¼Œæ³¨é‡Šä¿®æ”¹
+ * GenFrequentCoursesï¼Œæ·»åŠ æ–¹æ³• findCourseName()
+ * GenFrequentRecï¼Œåˆ é™¤æœªä½¿ç”¨æ–¹æ³• readFrequentCourses()ï¼Œæ·»åŠ è¿‡æ»¤è§„åˆ™ï¼ˆå‰”é™¤ç”¨æˆ·å·²è§‚çœ‹è¿‡çš„ï¼‰
 * **org.mooc.utility**
- * Ìí¼Ó APICrawler
- * ĞŞ¸Ä MongodbConn£¬Ìí¼ÓÑéÖ¤Á¬½Ó£¨ÓÃ»§Ãû£¬ÃÜÂë£©
- * É¾³ıÎ´Ê¹ÓÃÀà MySqlConn ºÍ JavaBeanToDocument
-## 3 ´ı¸Ä½ø
-* Æµ·±¶şÏî¼¯ÍÆ¼ö
- * user learned courses Ó¦¸Ã¸ÄÎªÓÃ»§Ñ¡ĞŞµÄ¿Î³Ì£¬ÒòÎªÄ³Ò»´ÎµÄµã»÷²»ÄÜ´ú±íÊ²Ã´£¬»òÕß¾ÍÊÇÓĞµã»÷µÄ´ÎÊıÏÂÏŞ
-* Êı¾İ°²È«ÎÊÌâ
- * Ã¿´Î¶¼»áÉ¾³ı¾ÉÊı¾İ£¬È»ºó´¦ÀíÔÚ´æÈëĞÂÊı¾İ£¬ÕâÑù»áÓĞ¶ªÊ§Êı¾İµÄÒş»¼
+ * æ·»åŠ  APICrawler
+ * ä¿®æ”¹ MongodbConnï¼Œæ·»åŠ éªŒè¯è¿æ¥ï¼ˆç”¨æˆ·åï¼Œå¯†ç ï¼‰
+ * åˆ é™¤æœªä½¿ç”¨ç±» MySqlConn å’Œ JavaBeanToDocument
+## 3 å¾…æ”¹è¿›
+* é¢‘ç¹äºŒé¡¹é›†æ¨è
+ * user learned courses åº”è¯¥æ”¹ä¸ºç”¨æˆ·é€‰ä¿®çš„è¯¾ç¨‹ï¼Œå› ä¸ºæŸä¸€æ¬¡çš„ç‚¹å‡»ä¸èƒ½ä»£è¡¨ä»€ä¹ˆï¼Œæˆ–è€…å°±æ˜¯æœ‰ç‚¹å‡»çš„æ¬¡æ•°ä¸‹é™
+* æ•°æ®å®‰å…¨é—®é¢˜
+ * æ¯æ¬¡éƒ½ä¼šåˆ é™¤æ—§æ•°æ®ï¼Œç„¶åå¤„ç†åœ¨å­˜å…¥æ–°æ•°æ®ï¼Œè¿™æ ·ä¼šæœ‰ä¸¢å¤±æ•°æ®çš„éšæ‚£
