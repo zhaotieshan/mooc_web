@@ -3,30 +3,37 @@ package org.mooc.controller;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import org.mooc.main.InitializeMooc;
 import org.mooc.main.UpdateManager;
 
-public class StartTimerListener implements ServletContextListener {
+/**
+ * 
+ * @author wuke
+ * @date  : 2017年04月14日 下午5:06:46
+ * Title  : InitListener
+ * Description : Initialization and start timer listener.
+ */
+public class InitListener implements ServletContextListener {
 
 	UpdateManager updatemanager = null;
-
-	/**
-	 * 创建一个初始化监听器对象，一般由容器调用
-	 */
-	public StartTimerListener() {
+	
+	public InitListener() {
 		super();
 	}
 
 	/**
-	 * 让 Web 程序运行的时候自动加载 Timer
+	 * Start when the Web Services start
 	 */
 	public void contextInitialized(ServletContextEvent e) {
-		System.out.println("-------------StartTimerListener.init-------------");
+		InitializeMooc.initMooc(); // Initialization of the whole service
+		
+		System.out.println("-------------Start Timer Listener-------------");
 		updatemanager = new UpdateManager();
 		updatemanager.executeUpdateTimer();
 	}
 
 	/**
-	 * 该方法由容器调用 空实现
+	 * Call by the container
 	 */
 	public void contextDestroyed(ServletContextEvent e) {
 	}
