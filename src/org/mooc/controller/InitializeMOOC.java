@@ -14,12 +14,12 @@ import org.mooc.recommend.frequentPattern.GenFrequentRec;
 * Title : MoocInit
 * Description : Initialize the Web Service.
 */
-public class InitializeMooc {
+public class InitializeMOOC {
 	/**
 	 * Initialization of the whole service
 	 */
 	public static void main() {
-		InitializeMooc.initMooc();
+		InitializeMOOC.initMooc();
 	}
 	
 	public static void initMooc() {
