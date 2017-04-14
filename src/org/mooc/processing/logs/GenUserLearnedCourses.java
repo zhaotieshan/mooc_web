@@ -92,7 +92,7 @@ public class GenUserLearnedCourses {
 			cursor.close();
 		}
 			
-	    System.out.println("Successfully read the all the logs from MongoDB mooc.logs!");
+	    // System.out.println("Successfully read the all the logs from MongoDB mooc.logs!");
 		
 		return logsDocuments;
 	}
@@ -129,7 +129,7 @@ public class GenUserLearnedCourses {
 		}
 		
 		// System.out.println(logsDocuments.size());
-	    System.out.println("Successfully read " + date + " logs from MongoDB mooc.logs!");
+	    // System.out.println("Successfully read " + date + " logs from MongoDB mooc.logs!");
 		
 		return logsDocuments;
 	}
@@ -165,7 +165,7 @@ public class GenUserLearnedCourses {
     		}
     	}
     	
-    	System.out.println("Successfully process List<Document> LogsDocuments!");
+    	// System.out.println("Successfully process List<Document> LogsDocuments!");
     	
     	return userCoursesMap;
     }
@@ -192,7 +192,7 @@ public class GenUserLearnedCourses {
 			cursor.close();
 		}
 		
-    	System.out.println("Successfully read the old records of user-learned-courses!");
+    	// System.out.println("Successfully read the old records of user-learned-courses!");
 		return historyUserCoursesMap;
 	}
 	
@@ -235,7 +235,7 @@ public class GenUserLearnedCourses {
 			}
 		}
 		
-    	System.out.println("Successfully merge the old and new records of user-learned-courses!");
+    	// System.out.println("Successfully merge the old and new records of user-learned-courses!");
     	
 		newUserCoursesMap = historyUserCoursesMap;
 		return newUserCoursesMap;
@@ -261,6 +261,6 @@ public class GenUserLearnedCourses {
 			collection.insertOne(doc);
 		}
 		
-    	System.out.println("Successfully store the new records of user-learned-courses!");
+    	// System.out.println("Successfully store the new records of user-learned-courses!");
 	}
 }
