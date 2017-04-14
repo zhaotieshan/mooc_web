@@ -6,7 +6,7 @@ import java.util.TreeSet;
  * @author: wuke 
  * @date  : 2016年12月12日 下午9:14:18
  * Title  : UserLearnedCourses
- * Description : store one user's id and the courses id which he has learned
+ * Description : User's id and the set of his/her learned courses.
  */
 public class UserLearnedCourses {
 	String userId;
