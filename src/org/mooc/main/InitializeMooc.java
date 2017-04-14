@@ -17,8 +17,8 @@ import org.mooc.recommend.frequentPattern.GenFrequentRec;
 public class InitializeMooc {
 	public static void initMooc() {
 		/* 用户、课程信息获取 & 日志数据处理 */
-		CrawlUsers.crawlUsers();
-		System.out.println("******************** 用户信息爬取成功！********************");
+		// CrawlUsers.crawlUsers(); // Not use yet.
+		// System.out.println("******************** 用户信息爬取成功！********************");
 		
 		CrawlCourses.crawlCourses();
 		System.out.println("******************** 课程信息爬取成功！********************");
