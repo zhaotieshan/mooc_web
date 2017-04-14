@@ -14,7 +14,7 @@ import com.mongodb.client.MongoCursor;
 * @author : wuke
 * @date   : 2017年4月10日下午4:01:53
 * Title   : TestMongoDBSplit
-* Description : 
+* Description : Paging query.
 */
 public class MongoDBSplit {
 
