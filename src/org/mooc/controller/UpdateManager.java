@@ -1,4 +1,4 @@
-package org.mooc.main;
+package org.mooc.controller;
 
 import java.text.DateFormat;
 import java.text.ParseException;

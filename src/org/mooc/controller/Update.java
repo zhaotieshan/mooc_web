@@ -1,4 +1,4 @@
-package org.mooc.main;
+package org.mooc.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,8 +30,8 @@ class Update implements Runnable {
 			 * One day's increment, 
 			 * (logs -> the user-learned-courses -> frequent-courses-pairs -> frequent course recommendations).
 			 * Notice : 
-			 * 1. course is update in Class GenFrequentCourses just when it need to be updated; 
-			 * 2. users don't need to update yet.
+			 * 1. update course in class GenFrequentCourses when necessary; 
+			 * 2. user's information is not used yet.
 			 */
 			ProcessLogs.oneDayIncrease(dateString);
 			

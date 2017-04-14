@@ -1,4 +1,4 @@
-package org.mooc.main;
+package org.mooc.controller;
 
 import org.mooc.processing.courses.CrawlCourses;
 import org.mooc.processing.logs.GenUserLearnedCourses;
@@ -12,9 +12,16 @@ import org.mooc.recommend.frequentPattern.GenFrequentRec;
 * @author : wuke
 * @date : 2017年4月11日下午4:27:16
 * Title : MoocInit
-* Description : Initialize the Web Service, which is called in Class InitListener.
+* Description : Initialize the Web Service.
 */
 public class InitializeMooc {
+	/**
+	 * Initialization of the whole service
+	 */
+	public static void main() {
+		InitializeMooc.initMooc();
+	}
+	
 	public static void initMooc() {
 		
 		// CrawlUsers.crawlUsers(); // Not use yet.
