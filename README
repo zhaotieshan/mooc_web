@@ -13,9 +13,12 @@
  * 简化类名为 CrawlCourses，剥离 API 访问函数（添加 APICrawler），简化注释
  * 简化类名为 CrawlUsers，剥离 API 访问函数（添加 APICrawler），简化注释
  * 简化类名为 ProcessLogs，重命名方法 initProcessLogs()，添加方法 oneDayIncrease(String date)
+ * GenUserLearnedCourses，方法initGenUserLearnedCourses()和oneDayIncrease(String date)
+* **org.mooc.controller**
+ * FrequentRec，添加“换一批”功能，简单的下 N 个
+ * InitializeMOOC，负责项目初次启动的初始化工作，包含日志处理，课程信息爬取，利用关联规则推荐算法为用户生成推荐课程等
+ * TimerListener、UpdateManager和Update组合实现定时任务，每天定时进行日志更新及推荐结果更新操作
 * **org.mooc.recommend.frequentPattern**
- * 删除未使用类 _GenerateUserLearnedCourses(代替类为 GenUserLearnedCourses)
- * GenUserLearnedCourses，确定方法initGenUserLearnedCourses()和oneDayIncrease(String date)
  * GenAprioriDataset，添加注释
  * MyApriori，方法修改，注释修改
  * GenFrequentCourses，添加方法 findCourseName()
@@ -24,13 +27,8 @@
  * 添加 APICrawler
  * 修改 MongodbConn，添加验证连接（用户名，密码）
  * 删除未使用类 MySqlConn 和 JavaBeanToDocument
-## 3 待修改
-* **org.mooc.controller**
- * 添加“换一批”功能，简单的下 N 个
- * RESTful API
-* **org.mooc.main**
-## 4 待改进
+## 3 待改进
 * 频繁二项集推荐
  * user learned courses 应该改为用户选修的课程，因为某一次的点击不能代表什么，或者就是有点击的次数下限
 * 数据安全问题
- * 每次都会删除旧数据，然后处理在存入新数据，这样会有丢失数据的隐患 
+ * 每次都会删除旧数据，然后处理在存入新数据，这样会有丢失数据的隐患
