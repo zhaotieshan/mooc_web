@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
-import org.mooc.main.InitializeMooc;
 import org.mooc.utility.MongoDBConn;
 
 import com.google.gson.Gson;
@@ -23,16 +22,12 @@ import com.mongodb.client.model.Filters;
  * @author: wuke 
  * @date  : 2016年11月24日 下午5:29:46
  * Title  : FrequentRec
- * Description : Servlet. Respond to user's request, like
+ * Description : Servlet. Respond to user's request, which include userId, page and pageSize, 
+ * an example, 
  * http://localhost:8080/mooc/fpRec?userId=40f3d4bf-4631-4181-95d4-7714576db407&page=1&pageSize=5
  */
 public class FrequentRec extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	@Override
-	public void init( ) throws ServletException {
-		InitializeMooc.initMooc();
-	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
