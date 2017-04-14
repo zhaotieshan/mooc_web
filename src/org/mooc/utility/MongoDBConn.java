@@ -33,7 +33,7 @@ public class MongoDBConn {
         mongoDatabase = MONGOCLIENT.getDatabase(databaseName);
         mongoCollection = mongoDatabase.getCollection(mongodbCollectionName);
         
-        System.out.println("Successfully get collection " + mongodbCollectionName + "!");
+        // System.out.println("Successfully get collection " + mongodbCollectionName + "!");
         return mongoCollection;
     }
     
