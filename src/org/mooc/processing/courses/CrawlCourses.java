@@ -32,7 +32,6 @@ public class CrawlCourses {
 		String strCourses = "";
 		
 		strCourses = APICrawler.getApiContent(URL, "utf-8");
-		System.out.println(strCourses.length());
 		
 		storeCoursesIntoMongodb(strCourses);
 	}
