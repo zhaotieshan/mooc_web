@@ -49,6 +49,7 @@ public class GenAprioriDataset {
      * }
 	 * @return apripriRecords ArrayList<String>
 	 */
+	@SuppressWarnings("unchecked")
 	public static ArrayList<String> generateRecords() {
 		ArrayList<String> apripriRecords = new ArrayList<String>();
 		
