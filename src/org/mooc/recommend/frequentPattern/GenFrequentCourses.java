@@ -25,12 +25,7 @@ import static com.mongodb.client.model.Filters.*;
  * 	   "count" : NumberInt("13")
  * }
  */
-public class GenFrequentCourses {
-	
-	public static void main(String[] args) {
-		// GenFrequentCourses.genFrequentCourses();
-	}
-	
+public class GenFrequentCourses {	
 	/**
 	 * Call functions in GenAprioriDataset and MyApriori to generate frequent courses pairs, 
 	 * then call function storeFrequentCourses() store the result into MongoDB mooc.frequentCourses.

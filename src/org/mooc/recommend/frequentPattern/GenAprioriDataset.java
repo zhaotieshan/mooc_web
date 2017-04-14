@@ -26,16 +26,7 @@ import com.mongodb.client.MongoCursor;
  * ->
  * "417cc764-ec96-4251-8200-1033ac256b93,7c731203-fef5-4b28-95cb-fea534210f97,a5fa3d7c-b633-429c-9d58-09e44cfe60de"
  */
-public class GenAprioriDataset {
-	public static void main(String[] args) {		
-		// ArrayList<String> apripriRecords = GenAprioriDataset.generateRecords();
-		
-		/*System.out.println(apripriRecords.size());
-		for(String str : apripriRecords) {
-			System.out.println(str);
-		}*/
-	}
-	
+public class GenAprioriDataset {	
 	/**
 	 * Notice, there are "undefined" course in the user-learned-courses, like 
 	 * {

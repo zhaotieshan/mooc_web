@@ -33,10 +33,6 @@ import com.mongodb.client.MongoCursor;
  */
 
 public class GenUserLearnedCourses {
-	public static void main(String[] args) {
-		// GenerateUserLearnedCourses.initGenUserLearnedCourses();
-	}
-	
 	/**
 	 * First time using, process all the records in MongoDB mooc.logs.
 	 */

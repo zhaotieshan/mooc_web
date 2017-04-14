@@ -14,16 +14,11 @@ import net.sf.json.JSONObject;
  * @date  : 2016年11月23日 下午5:36:47
  * Title  : CrawlerGetAllCourseData
  * Description : Get all courses' data from "http://www.mooc2u.com/API/Open/CourseOpen/GetAllCourseData", 
- *               then store them into MongoDB.
+ *               then store into MongoDB.
  *               Until 20170331, totally 153 courses!
- * Problem : BufferedReader 大小限制 会不会有影响？？？
  */
 public class CrawlCourses {
 	static String URL = "http://www.mooc2u.com/API/Open/CourseOpen/GetAllCourseData";
-	
-	public static void main(String[] args) {
-		// CrawlCourses.crawlCourses();
-	}
 	
 	/**
 	 * Get courses from the API of courses.

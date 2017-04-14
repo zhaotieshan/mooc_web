@@ -17,12 +17,7 @@ import static com.mongodb.client.model.Filters.*;
 * Description : Generate frequent courses pairs for every user. 
 *   Then store the recommendations into MongoDB mooc.frequentRec. 
 */
-public class GenFrequentRec {
-	
-	public static void main(String[] args) {
-		// GenFrequentRec.generateFrequentRec();
-	}
-	
+public class GenFrequentRec {	
 	/**
 	 * user_learned_courses & frequent_two_courses -> Frequent recommendation.
 	 * @param userCoursesMap

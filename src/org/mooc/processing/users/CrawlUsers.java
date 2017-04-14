@@ -14,16 +14,11 @@ import com.mongodb.client.MongoCollection;
  * @date  : 2016Äê12ÔÂ7ÈÕ
  * Title  : CrawlerGetUsersStoreMongodb
  * Description : Get all users' data from "http://www.mooc2u.com/api/open/user/GetAllUserData", 
- *               and store them into MongoDB 'mooc.users'
- *               Until 20171226, totally 51127 users!
+ *               then store into MongoDB 'mooc.users'.
  *               Until 20170331, totally 71029 users!
  */
 public class CrawlUsers {
 	static String URL = "http://www.mooc2u.com/api/open/user/GetAllUserData";
-	
-	public static void main(String[] args) {
-		// CrawlUsers.crawlUsers();
-	}
 	
 	/**
 	 * Get users from the API of users.
@@ -38,7 +33,7 @@ public class CrawlUsers {
 	}
 	
 	/**
-	 * store the String, which contains a JSON array of users, into MongoDB 'mooc.users'
+	 * Store the String, which contains a JSON array of users, into MongoDB 'mooc.users'
 	 */
 	private static void storeUsersIntoMongodb(String strUsers) {
 		JSONObject users = JSONObject.fromObject(strUsers); // transform the String into a JSON object
