@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import org.bson.Document;
+import org.mooc.processing.courses.CrawlCourses;
 import org.mooc.utility.MongoDBConn;
 
 import com.mongodb.client.MongoCollection;
@@ -91,6 +92,8 @@ public class GenFrequentCourses {
 	
 	/**
 	 * Using CourseID to get CourseName from MongoDB mooc.courses.
+	 * If the courseID doesn't exist, need to update the courses in MongoDB, 
+	 * so call the function in CrawlCourses.
 	 * @param courseID
 	 * @return courseName
 	 */
@@ -99,6 +102,14 @@ public class GenFrequentCourses {
 		
 		MongoCollection<Document> collection =  MongoDBConn.getMongoCollection("mooc", "courses");
 		Document doc = collection.find(eq("CourseID", courseID)).first();
+
+		// Update the courses in MongoDB
+		if(doc == null) {
+			CrawlCourses.crawlCourses(); // Crawl courses from the API
+			
+			collection =  MongoDBConn.getMongoCollection("mooc", "courses");
+			doc = collection.find(eq("CourseID", courseID)).first();
+		}
 		
 		courseName = doc.getString("CourseName");
 		return courseName;
