@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/org/mooc/bean/Notice=UTF-8
 encoding//src/org/mooc/controller/TimerListener.java=UTF-8
 encoding//src/org/mooc/controller/Update.java=UTF-8
 encoding//src/org/mooc/controller/UpdateManager.java=UTF-8
