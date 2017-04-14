@@ -19,7 +19,7 @@
   </servlet-mapping>
   
   <listener>  
-    <listener-class>org.mooc.controller.StartTimerListener</listener-class>  
+    <listener-class>org.mooc.controller.InitListener</listener-class>  
   </listener> 
   
 </web-app>
