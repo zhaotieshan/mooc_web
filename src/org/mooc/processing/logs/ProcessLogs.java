@@ -61,6 +61,9 @@ public class ProcessLogs {
 	 * First time using, process all the logs, which are stored in the catalog PATH.
 	 */
 	public static void initProcessLogs() {
+		MongoCollection<Document> logsCollection = MongoDBConn.getMongoCollection("mooc", "logs");
+		logsCollection.drop();
+		
 		File file = new File(PATH);
 		File[] array = file.listFiles();
 		
