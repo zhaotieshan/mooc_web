@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/org/mooc/controller/StartTimerListener.java=UTF-8
+encoding//src/org/mooc/controller/InitListener.java=UTF-8
 encoding//src/org/mooc/main/Update.java=UTF-8
 encoding//src/org/mooc/main/UpdateManager.java=UTF-8
 encoding//src/org/mooc/utility/MongoDBConn.java=UTF-8
