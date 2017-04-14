@@ -18,7 +18,7 @@ public class InitializeMOOC {
 	/**
 	 * Initialization of the whole service
 	 */
-	public static void main() {
+	public static void main(String[] args) {
 		InitializeMOOC.initMooc();
 	}
 	
@@ -31,16 +31,16 @@ public class InitializeMOOC {
 		System.out.println("******************** 课程信息爬取成功！********************");
 		
 		ProcessLogs.initProcessLogs();
-		System.out.println("******************** 日志信息读取成功！********************");
+		System.out.println("******************** 日志信息处理成功！********************");
 		
 		GenUserLearnedCourses.initGenUserLearnedCourses();
-		System.out.println("******************** 用户已学课程生成成功！********************");
+		System.out.println("******************** 已学课程生成成功！********************");
 			
 		GenAprioriDataset.generateRecords();
 		GenFrequentCourses.genFrequentCourses();
 		System.out.println("******************** 课程频繁二项集生成成功！********************");
 		
 		GenFrequentRec.generateFrequentRec();
-		System.out.println("******************** 用户推荐结果生成成功！********************");	
+		System.out.println("******************** 推荐结果生成成功！********************");	
 	}
 }
