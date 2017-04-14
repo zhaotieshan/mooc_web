@@ -16,6 +16,7 @@ import org.mooc.recommend.frequentPattern.GenFrequentRec;
  * Description : Update everyday
  */
 class Update implements Runnable {
+	@Override
 	public void run() {
 		try {
 			System.out.println("***************** Update start *****************");
