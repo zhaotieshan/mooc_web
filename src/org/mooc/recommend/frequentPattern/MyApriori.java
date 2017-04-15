@@ -7,6 +7,11 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.bson.Document;
+import org.mooc.utility.MongoDBConn;
+
+import com.mongodb.client.MongoCollection;
+
 /**
  * @author: wuke 
  * @date  : 2016年12月20日 下午4:29:08
@@ -15,7 +20,12 @@ import java.util.TreeSet;
  */
 public class MyApriori {
 
-	private final static int MIN_SUPPORT = 15; // min support
+	private static double MIN_SUPPORT = 0.01; // min support
+	
+	static {
+		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "userCourses");
+		MIN_SUPPORT *= collection.count();
+	}
 	
 	/**
 	 * Tesing.
@@ -117,7 +127,7 @@ public class MyApriori {
 	 * @param frequentOneItemset
 	 * @return candidateTwoItemset
 	 */
-	static Set<String> genCandidateTwoItemset(Map<String, Integer> frequentOneItemset) {
+	private static Set<String> genCandidateTwoItemset(Map<String, Integer> frequentOneItemset) {
 		Set<String> candidateTwoItemSet = new TreeSet<String>();
 		
 		for(Map.Entry<String, Integer> entry1 : frequentOneItemset.entrySet()) {
@@ -142,7 +152,7 @@ public class MyApriori {
 	 * @param subject
 	 * @return
 	 */
-	static Map<String, Integer> minSupport(Map<String, Integer> subject) {
+	private static Map<String, Integer> minSupport(Map<String, Integer> subject) {
 		Iterator<Map.Entry<String, Integer>> iter = subject.entrySet().iterator();
 		while(iter.hasNext()) {
 			Map.Entry<String, Integer> entry = iter.next();
