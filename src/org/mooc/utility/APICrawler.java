@@ -8,14 +8,14 @@ import java.net.URL;
 * @author : wuke
 * @date   : 2017年3月31日下午7:06:09
 * Title   : APICrawler
-* Description : get all the content in a URL and store them into a String
+* Description : Get all the content in a URL.
 */
 public class APICrawler {
 	/**
-	 * get all the content in the URL and store them into a String
+	 * get all the content in the URL, return the content as a String
 	 * @param url
 	 * @param param
-	 * @return
+	 * @return str
 	 */
 	public static String getApiContent(String url,String param) {
 		BufferedReader br = null;
