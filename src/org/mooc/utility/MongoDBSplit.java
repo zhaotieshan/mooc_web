@@ -6,14 +6,13 @@ import java.util.List;
 import org.bson.Document;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBCursor;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 
 /**
 * @author : wuke
 * @date   : 2017年4月10日下午4:01:53
-* Title   : TestMongoDBSplit
+* Title   : MongoDBSplit
 * Description : Paging query.
 */
 public class MongoDBSplit {

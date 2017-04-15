@@ -10,8 +10,16 @@ import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+/**
+* @author : wuke
+* @date   : 2016年11月23日下午4:01:53
+* Title   : MongoDBConn
+* Description : 
+*/
 public class MongoDBConn {
 	private static MongoClient MONGOCLIENT = null;
+	private static String USERNAME = "root";
+	private static String PASSWORD = "root";
 	
 	/**
 	 * Return MongoCollection
@@ -26,8 +34,10 @@ public class MongoDBConn {
     	// Double Check Lock
     	if(MONGOCLIENT == null) {
     		synchronized(MongoDBConn.class) {
-    		    if(MONGOCLIENT == null)
+    		    if(MONGOCLIENT == null) {
     		    	MongoDBConn.initMongoClient();
+    		        // MongoDBConn.initMongoClientNoAuthentication();
+    		    }
     	    }
     	}
         mongoDatabase = MONGOCLIENT.getDatabase(databaseName);
@@ -42,11 +52,9 @@ public class MongoDBConn {
      */
     private static void initMongoClient() {
     	ServerAddress ip = new ServerAddress("localhost",27017);
-    	String userName = "root";
-    	String password = "root";
     	String databaseName = "mooc";
     	try {
-    	    MongoCredential credential = MongoCredential.createCredential(userName, databaseName, password.toCharArray());
+    	    MongoCredential credential = MongoCredential.createCredential(USERNAME, databaseName, PASSWORD.toCharArray());
     	    MONGOCLIENT = new MongoClient(ip, Arrays.asList(credential));
     	} catch(Exception e) {
     		e.printStackTrace();
