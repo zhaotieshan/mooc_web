@@ -18,8 +18,8 @@ import com.mongodb.client.MongoDatabase;
 */
 public class MongoDBConn {
 	private static MongoClient MONGOCLIENT = null;
-	private static String USERNAME = "root";
-	private static String PASSWORD = "root";
+	private static String USERNAME = "mooc";
+	private static String PASSWORD = "mooc123";
 	
 	/**
 	 * Return MongoCollection
