@@ -8,7 +8,7 @@ import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import org.bson.Document;
-import org.mooc.utility.MongoDBConn;
+import org.mooc.utility.MongoConn;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
@@ -75,7 +75,7 @@ public class GenUserLearnedCourses {
 	private static List<Document> readLogs() {
 		List<Document> logsDocuments = new ArrayList<Document>();
 		
-		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "logs");
+		MongoCollection<Document> collection = MongoConn.getMongoCollection("mooc", "logs");
 			
 		MongoCursor<Document> cursor = collection.find().iterator();
 		Document doc = new Document();
@@ -105,7 +105,7 @@ public class GenUserLearnedCourses {
 	private static List<Document> readOneDayLogs(String date) {
 		List<Document> logsDocuments = new ArrayList<Document>();
 		
-		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "logs");
+		MongoCollection<Document> collection = MongoConn.getMongoCollection("mooc", "logs");
 		
 		// "@timestamp" : "2016-06-08T13:05:26.000Z"
 		Pattern pattern = Pattern.compile("^" + date + ".*$");
@@ -179,7 +179,7 @@ public class GenUserLearnedCourses {
     private static Map<String, ArrayList<String>> readHistoryUserCourses() {
 		Map<String, ArrayList<String>> historyUserCoursesMap = new HashMap<String, ArrayList<String>>();
 		
-		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "userCourses");
+		MongoCollection<Document> collection = MongoConn.getMongoCollection("mooc", "userCourses");
 		
 		MongoCursor<Document> cursor = collection.find().iterator();
 		Document doc = new Document();
@@ -246,11 +246,11 @@ public class GenUserLearnedCourses {
 	 * @param userCoursesMap Map<String, ArrayList<String>>
 	 */
 	private static void storeUserCourses(Map<String, ArrayList<String>> userCoursesMap) {
-		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "userCourses");
+		MongoCollection<Document> collection = MongoConn.getMongoCollection("mooc", "userCourses");
 		
 		collection.drop(); // delete the old data
 		
-		collection = MongoDBConn.getMongoCollection("mooc", "userCourses");
+		collection = MongoConn.getMongoCollection("mooc", "userCourses");
 		
 		Document doc = null;
 		for(Map.Entry<String, ArrayList<String>> entry : userCoursesMap.entrySet()) {
