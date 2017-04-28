@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bson.Document;
-import org.mooc.utility.MongoDBConn;
+import org.mooc.utility.MongoConn;
 
 import com.mongodb.client.MongoCollection;
 import static com.mongodb.client.model.Filters.*;
@@ -36,12 +36,12 @@ public class GenFrequentRec {
 		Map<String, ArrayList<String>> userCoursesMap = GenFrequentRec.readUserCourses();
 		
 		MongoCollection<Document> frequentRec_collection = 
-				MongoDBConn.getMongoCollection("mooc", "frequentRec");
+				MongoConn.getMongoCollection("mooc", "frequentRec");
 		frequentRec_collection.drop(); // delete the old data
-		frequentRec_collection = MongoDBConn.getMongoCollection("mooc", "frequentRec");
+		frequentRec_collection = MongoConn.getMongoCollection("mooc", "frequentRec");
 		
 		MongoCollection<Document> frequentCourses_collection = 
-				MongoDBConn.getMongoCollection("mooc", "frequentCourses");
+				MongoConn.getMongoCollection("mooc", "frequentCourses");
 		
 		// Iterate every record in userCoursesMap
 		String userId = "";
@@ -97,7 +97,7 @@ public class GenFrequentRec {
 	private static Map<String, ArrayList<String>> readUserCourses() {
 		Map<String, ArrayList<String>> userCoursesMap = new HashMap<String, ArrayList<String>>();
 		
-		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "userCourses");
+		MongoCollection<Document> collection = MongoConn.getMongoCollection("mooc", "userCourses");
 		
 		String userId = "";
 		ArrayList<String> coursesSet = null; 

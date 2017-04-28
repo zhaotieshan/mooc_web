@@ -8,7 +8,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.bson.Document;
-import org.mooc.utility.MongoDBConn;
+import org.mooc.utility.MongoConn;
 
 import com.mongodb.client.MongoCollection;
 
@@ -23,7 +23,7 @@ public class MyApriori {
 	private static double MIN_SUPPORT = 0.01; // min support
 	
 	static {
-		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "userCourses");
+		MongoCollection<Document> collection = MongoConn.getMongoCollection("mooc", "userCourses");
 		MIN_SUPPORT *= collection.count();
 	}
 	

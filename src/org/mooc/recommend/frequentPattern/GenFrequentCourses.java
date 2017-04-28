@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.bson.Document;
 import org.mooc.processing.courses.CrawlCourses;
-import org.mooc.utility.MongoDBConn;
+import org.mooc.utility.MongoConn;
 
 import com.mongodb.client.MongoCollection;
 import static com.mongodb.client.model.Filters.*;
@@ -49,11 +49,11 @@ public class GenFrequentCourses {
 	 * @param frequentTwoItemsetMap
 	 */
 	private static void storeFrequentCourses(Map<String, Integer> frequentTwoItemsetMap) {
-		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "frequentCourses");
+		MongoCollection<Document> collection = MongoConn.getMongoCollection("mooc", "frequentCourses");
 		
 		// drop the old data
 		collection.drop();
-		collection = MongoDBConn.getMongoCollection("mooc", "frequentCourses");
+		collection = MongoConn.getMongoCollection("mooc", "frequentCourses");
 		
 		String course1 = "";
 		String course2 = "";
@@ -95,14 +95,14 @@ public class GenFrequentCourses {
 	private static String findCourseName(String courseID) {
 		String courseName = null;
 		
-		MongoCollection<Document> collection =  MongoDBConn.getMongoCollection("mooc", "courses");
+		MongoCollection<Document> collection =  MongoConn.getMongoCollection("mooc", "courses");
 		Document doc = collection.find(eq("CourseID", courseID)).first();
 
 		// Update the courses in MongoDB
 		if(doc == null) {
 			CrawlCourses.crawlCourses(); // Crawl courses from the API
 			
-			collection =  MongoDBConn.getMongoCollection("mooc", "courses");
+			collection =  MongoConn.getMongoCollection("mooc", "courses");
 			doc = collection.find(eq("CourseID", courseID)).first();
 		}
 		

@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import org.bson.Document;
-import org.mooc.utility.MongoDBConn;
+import org.mooc.utility.MongoConn;
 
 import com.mongodb.client.MongoCollection;
 
@@ -61,7 +61,7 @@ public class ProcessLogs {
 	 * First time using, process all the logs, which are stored in the catalog PATH.
 	 */
 	public static void initProcessLogs() {
-		MongoCollection<Document> logsCollection = MongoDBConn.getMongoCollection("mooc", "logs");
+		MongoCollection<Document> logsCollection = MongoConn.getMongoCollection("mooc", "logs");
 		logsCollection.drop();
 		
 		File file = new File(PATH);
@@ -122,7 +122,7 @@ public class ProcessLogs {
 	 * @param documents an ArrayList of Document
 	 */
 	private static void storeOneDayLogs(ArrayList<Document> documents) {
-		MongoCollection<Document> logsCollection = MongoDBConn.getMongoCollection("mooc", "logs");
+		MongoCollection<Document> logsCollection = MongoConn.getMongoCollection("mooc", "logs");
 		
 		logsCollection.insertMany(documents);
 	}

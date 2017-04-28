@@ -16,7 +16,7 @@ import com.mongodb.client.MongoDatabase;
 * Title   : MongoDBConn
 * Description : 
 */
-public class MongoDBConn {
+public class MongoConn {
 	private static MongoClient MONGOCLIENT = null;
 	private static String USERNAME = "mooc";
 	private static String PASSWORD = "mooc123";
@@ -33,9 +33,9 @@ public class MongoDBConn {
     	
     	// Double Check Lock
     	if(MONGOCLIENT == null) {
-    		synchronized(MongoDBConn.class) {
+    		synchronized(MongoConn.class) {
     		    if(MONGOCLIENT == null) {
-    		    	MongoDBConn.initMongoClient();
+    		    	MongoConn.initMongoClient();
     		        // MongoDBConn.initMongoClientNoAuthentication();
     		    }
     	    }

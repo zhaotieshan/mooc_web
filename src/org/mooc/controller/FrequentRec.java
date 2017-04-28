@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
-import org.mooc.utility.MongoDBConn;
+import org.mooc.utility.MongoConn;
 
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
@@ -47,7 +47,7 @@ public class FrequentRec extends HttpServlet {
 		userId = request.getParameter("userId");
 		
 		// Query from MongoDB mooc.frequentRec
-		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "frequentRec");
+		MongoCollection<Document> collection = MongoConn.getMongoCollection("mooc", "frequentRec");
 		
 		Bson filter = Filters.eq("userId", userId);
 		

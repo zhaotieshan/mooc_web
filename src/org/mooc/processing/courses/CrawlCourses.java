@@ -2,7 +2,7 @@ package org.mooc.processing.courses;
 
 import org.bson.Document;
 import org.mooc.utility.APICrawler;
-import org.mooc.utility.MongoDBConn;
+import org.mooc.utility.MongoConn;
 
 import com.mongodb.client.MongoCollection;
 
@@ -40,9 +40,9 @@ public class CrawlCourses {
 		JSONArray jsonArr = courses.getJSONArray("Data"); // and then extract the JSON array from the JSON object
 		
 		// get Collection 'mooc.courses', need to delete the old data
-		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "courses");
+		MongoCollection<Document> collection = MongoConn.getMongoCollection("mooc", "courses");
 		collection.drop();
-		collection = MongoDBConn.getMongoCollection("mooc", "courses");
+		collection = MongoConn.getMongoCollection("mooc", "courses");
 				
 		// store the new data into the Collection 'mooc.courses'
 		Document document = null;

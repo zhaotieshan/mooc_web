@@ -25,7 +25,7 @@ public class MongoDBSplit {
 
 	static List<Document> page(int page, int pageSize) {
 		List<Document> docs = new ArrayList<Document>();
-		MongoCollection<Document> collection = MongoDBConn.getMongoCollection("mooc", "frequentCourses");
+		MongoCollection<Document> collection = MongoConn.getMongoCollection("mooc", "frequentCourses");
 		
 		BasicDBObject sort = new BasicDBObject();
 		sort.put("count", -1);
