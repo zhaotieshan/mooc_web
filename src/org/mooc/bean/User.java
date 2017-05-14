@@ -1,7 +1,7 @@
 package org.mooc.bean;
 /**
  * @author: wuke 
- * @date  : 2016年12月4日 下午8:24:12
+ * @date  : 20161204 8:24:12
  * Title  : User
  * Description : 
  */

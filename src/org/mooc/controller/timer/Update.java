@@ -11,7 +11,7 @@ import org.mooc.recommend.frequentPattern.GenFrequentRec;
 
 /** 
  * @author wuke
- * @date  : 2017年04月11日 下午20:56:46
+ * @date  : 20170411 20:56:46
  * Title  : Update
  * Description : Update everyday
  */

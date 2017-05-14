@@ -11,7 +11,7 @@ import net.sf.json.JSONObject;
 
 /**
  * @author: wuke 
- * @date  : 2016年11月23日 下午5:36:47
+ * @date  : 20161123 5:36:47
  * Title  : CrawlerGetAllCourseData
  * Description : Get all courses' data from "http://www.mooc2u.com/API/Open/CourseOpen/GetAllCourseData", 
  *               then store into MongoDB.

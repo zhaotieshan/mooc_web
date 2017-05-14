@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 /** 
  * @author wuke
- * @date  : 2017年04月11日 下午20:55:46
+ * @date  : 20170411 20:55:46
  * Title  : UpdateManager
  * Description : 
  */

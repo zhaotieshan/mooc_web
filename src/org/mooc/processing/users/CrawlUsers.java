@@ -11,7 +11,7 @@ import com.mongodb.client.MongoCollection;
 
 /**
  * @author: wuke 
- * @date  : 2016Äê12ÔÂ7ÈÕ
+ * @date  : 20161207
  * Title  : CrawlerGetUsersStoreMongodb
  * Description : Get all users' data from "http://www.mooc2u.com/api/open/user/GetAllUserData", 
  *               then store into MongoDB 'mooc.users'.

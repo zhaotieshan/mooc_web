@@ -12,7 +12,7 @@ import com.mongodb.client.MongoDatabase;
 
 /**
 * @author : wuke
-* @date   : 2016年11月23日下午4:01:53
+* @date   : 20161123 4:01:53
 * Title   : MongoDBConn
 * Description : 
 */

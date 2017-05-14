@@ -10,7 +10,7 @@ import com.mongodb.client.MongoCursor;
 
 /**
  * @author: wuke 
- * @date  : 2016年12月19日 下午9:29:03
+ * @date  : 20161219 9:29:03
  * Title  : GenAprioriDataset
  * Description : Read records from MongoDB mooc.userCourses, generate dataset for Apriori.
  * An example, need to transform the former into the latter, 

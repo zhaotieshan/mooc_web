@@ -12,7 +12,7 @@ import static com.mongodb.client.model.Filters.*;
 
 /**
 * @author : wuke
-* @date   : 2016Äê12ÔÂ22ÈÕÏÂÎç5:02:56
+* @date   : 20161222 5:02:56
 * Title   : GenFrequentRec
 * Description : Generate frequent courses pairs for every user. 
 *   Then store the recommendations into MongoDB mooc.frequentRec. 
@@ -26,9 +26,9 @@ public class GenFrequentRec {
 	 *     "_id" : ObjectId("58eae309d1ad2112f04b1e8b"),
 	 *     "userId" : "cdb848ca-d702-4ae1-83f6-1f1e67c800ce",
 	 *     "course1" : "0d7973e0-67b1-4a0a-bbd4-fd2f0d6be887",
-	 *     "course1Name" : "CADÖÆÍ¼",
+	 *     "course1Name" : "CADåˆ¶å›¾",
 	 *     "course2" : "daf84e78-9fd6-4e17-be58-f71c38cee288",
-	 *     "course2Name" : "¼ÆËã»ú°²È«",
+	 *     "course2Name" : "è®¡ç®—æœºå®‰å…¨",
 	 *     "count" : NumberInt("18")
 	 * }
 	 */

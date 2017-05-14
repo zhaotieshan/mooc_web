@@ -20,7 +20,7 @@ import com.mongodb.client.model.Filters;
 
 /**
  * @author: wuke 
- * @date  : 2016年11月24日 下午5:29:46
+ * @date  : 20161124 5:29:46
  * Title  : FrequentRec
  * Description : Servlet. Respond to user's request, which include userId, page and pageSize, 
  * an example, 
@@ -52,7 +52,7 @@ public class FrequentRec extends HttpServlet {
 		Bson filter = Filters.eq("userId", userId);
 		
 		BasicDBObject sort = new BasicDBObject();
-	    sort.put("count",-1); // 1, ascending; －1, descending
+	    sort.put("count",-1); // 1, ascending; 锟斤拷1, descending
 		
 		int page = 0;
 		int pageSize = 0;

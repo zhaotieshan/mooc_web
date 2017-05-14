@@ -10,7 +10,7 @@ import org.mooc.recommend.frequentPattern.GenFrequentRec;
 
 /**
 * @author : wuke
-* @date : 2017Äê4ÔÂ11ÈÕÏÂÎç4:27:16
+* @date : 20170411 4:27:16
 * Title : MoocInit
 * Description : Initialize the Web Service.
 */
@@ -25,22 +25,22 @@ public class InitializeMOOC {
 	public static void initMooc() {
 		
 		// CrawlUsers.crawlUsers(); // Not use yet.
-		// System.out.println("******************** ÓÃ»§ĞÅÏ¢ÅÀÈ¡³É¹¦£¡********************");
+		// System.out.println("******************** ç”¨æˆ·ä¿¡æ¯çˆ¬å–æˆåŠŸï¼********************");
 		
 		CrawlCourses.crawlCourses();
-		System.out.println("******************** ¿Î³ÌĞÅÏ¢ÅÀÈ¡³É¹¦£¡********************");
+		System.out.println("******************** è¯¾ç¨‹ä¿¡æ¯çˆ¬å–æˆåŠŸï¼********************");
 		
 		ProcessLogs.initProcessLogs();
-		System.out.println("******************** ÈÕÖ¾ĞÅÏ¢´¦Àí³É¹¦£¡********************");
+		System.out.println("******************** æ—¥å¿—ä¿¡æ¯å¤„ç†æˆåŠŸï¼********************");
 		
 		GenUserLearnedCourses.initGenUserLearnedCourses();
-		System.out.println("******************** ÒÑÑ§¿Î³ÌÉú³É³É¹¦£¡********************");
+		System.out.println("******************** å·²å­¦è¯¾ç¨‹ç”ŸæˆæˆåŠŸï¼********************");
 			
 		GenAprioriDataset.generateRecords();
 		GenFrequentCourses.genFrequentCourses();
-		System.out.println("******************** ¿Î³ÌÆµ·±¶şÏî¼¯Éú³É³É¹¦£¡********************");
+		System.out.println("******************** è¯¾ç¨‹é¢‘ç¹äºŒé¡¹é›†ç”ŸæˆæˆåŠŸï¼********************");
 		
 		GenFrequentRec.generateFrequentRec();
-		System.out.println("******************** ÍÆ¼ö½á¹ûÉú³É³É¹¦£¡********************");	
+		System.out.println("******************** æ¨èç»“æœç”ŸæˆæˆåŠŸï¼********************");	
 	}
 }

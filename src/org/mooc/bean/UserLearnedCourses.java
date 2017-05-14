@@ -4,7 +4,7 @@ import java.util.TreeSet;
 
 /**
  * @author: wuke 
- * @date  : 2016年12月12日 下午9:14:18
+ * @date  : 20161212 9:14:18
  * Title  : UserLearnedCourses
  * Description : User's id and the set of his/her learned courses.
  */

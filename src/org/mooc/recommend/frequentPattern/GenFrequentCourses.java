@@ -12,16 +12,16 @@ import static com.mongodb.client.model.Filters.*;
 
 /**
  * @author: wuke 
- * @date  : 2016年12月22日 上午9:41:33
+ * @date  : 20161222 9:41:33
  * Title  : GenFrequentCourses
  * Description : Generate frequent courses pairs by calling algorithm MyApriori. 
  * The result namely the Documents in MongoDB mooc.frequentCourses is like:
  * {
  *     "_id" : ObjectId("58ea412d631a4e18b09165a6"),
  * 	   "course1" : "050fb0b8-bffe-4b28-994d-2190debef53b",
- *     "course1Name" : "电路",
+ *     "course1Name" : "鐢佃矾",
  * 	   "course2" : "0d7973e0-67b1-4a0a-bbd4-fd2f0d6be887",
- *     "course2Name" : "CAD制图",
+ *     "course2Name" : "CAD鍒跺浘",
  * 	   "count" : NumberInt("13")
  * }
  */

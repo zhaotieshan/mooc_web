@@ -13,7 +13,7 @@ import com.mongodb.client.MongoCollection;
 
 /**
  * @author: wuke 
- * @date  : 2016年12月8日 上午9:04:24
+ * @date  : 20161208 9:04:24
  * Title  : ProcesssLogs
  * Description : Read and store the logs(store in JSON files) into MongoDB mooc.logs.
  * An example,

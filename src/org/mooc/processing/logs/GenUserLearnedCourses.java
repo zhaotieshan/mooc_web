@@ -16,7 +16,7 @@ import com.mongodb.client.MongoCursor;
 
 /**
  * @author: wuke 
- * @date  : 2016年12月12日 下午9:06:17
+ * @date  : 20161212 9:06:17
  * Title  : GenUserLearnedCourses
  * Description : Generate records of user-learned-courses, then store them into MongoDB mooc.userCourses.
  * An example, 

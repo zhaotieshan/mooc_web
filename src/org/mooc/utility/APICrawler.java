@@ -6,7 +6,7 @@ import java.net.URL;
 
 /**
 * @author : wuke
-* @date   : 2017年3月31日下午7:06:09
+* @date   : 20170331 7:06:09
 * Title   : APICrawler
 * Description : Get all the content in a URL.
 */

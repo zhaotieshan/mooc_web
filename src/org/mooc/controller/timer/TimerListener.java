@@ -6,7 +6,7 @@ import javax.servlet.ServletContextListener;
 /**
  * 
  * @author wuke
- * @date  : 2017年04月14日 下午5:06:46
+ * @date  : 20170414 17:06:46
  * Title  : TimerListener
  * Description : Start timer listener.
  */

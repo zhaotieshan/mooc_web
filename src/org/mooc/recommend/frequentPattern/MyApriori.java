@@ -14,7 +14,7 @@ import com.mongodb.client.MongoCollection;
 
 /**
  * @author: wuke 
- * @date  : 2016年12月20日 下午4:29:08
+ * @date  : 20161220 4:29:08
  * Title  : MyApriori
  * Description : 
  */
@@ -139,7 +139,7 @@ public class MyApriori {
 				StringBuilder temp = new StringBuilder();
 				if(str1.compareTo(str2) < 0) {
 					temp.append(str1).append(",").append(str2);
-					candidateTwoItemSet.add(temp.toString()); // 连接步
+					candidateTwoItemSet.add(temp.toString()); // 锟斤拷锟接诧拷
 				}
 			}
 		}
