@@ -1,8 +1,6 @@
 package org.mooc.processing.logs;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
@@ -15,7 +13,7 @@ import com.mongodb.client.MongoCursor;
 
 /**
 * @author : wuke
-* @date   : 2017年4月22日下午9:03:06
+* @date   : 20170422 9:03:06
 * Title   : GenUserResources
 * Description : Generate user viewed resources, store in silkRoad.user_viewed_company, 
 *     silkRoad.user_viewed_country...
@@ -37,14 +35,14 @@ public class GenUserLearnedCourses_new {
 	}
 	
 	/**
-	 * 增量计算，待补充
+	 * 澧為噺璁＄畻锛屽緟琛ュ厖
 	 */
 	static void readHistoryRecords() {
 		
 	}
 	
 	/**
-	 * 增量计算，待补充
+	 * 澧為噺璁＄畻锛屽緟琛ュ厖
 	 */
 	static void readOneDayLogs(String date) {		
 		MongoCollection<Document> collection = MongoConn.getMongoCollection("mooc", "logs");
@@ -68,6 +66,9 @@ public class GenUserLearnedCourses_new {
 		}
 	}
 	
+	/**
+	 * Read all the logs, first time using
+	 */
 	public static void readLogs() {
 		HashMap<String, HashMap<String, Integer>> userCourses = new HashMap<String, HashMap<String, Integer>>();
 		
