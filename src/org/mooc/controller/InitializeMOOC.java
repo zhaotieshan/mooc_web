@@ -25,22 +25,22 @@ public class InitializeMOOC {
 	public static void initMooc() {
 		
 		// CrawlUsers.crawlUsers(); // Not use yet.
-		// System.out.println("******************** 用户信息爬取成功！********************");
+		// System.out.println("******************** Successfully crawling user information! ********************");
 		
 		CrawlCourses.crawlCourses();
-		System.out.println("******************** 课程信息爬取成功！********************");
+		System.out.println("******************** Successfully crawling course information! ********************");
 		
 		ProcessLogs.initProcessLogs();
-		System.out.println("******************** 日志信息处理成功！********************");
+		System.out.println("******************** Successfully processing logs! ********************");
 		
 		GenUserLearnedCourses.initGenUserLearnedCourses();
-		System.out.println("******************** 已学课程生成成功！********************");
+		System.out.println("******************** Successfully generating user-learned-courses! ********************");
 			
 		GenAprioriDataset.generateRecords();
 		GenFrequentCourses.genFrequentCourses();
-		System.out.println("******************** 课程频繁二项集生成成功！********************");
+		System.out.println("******************** Successfully generating frequent_two_itemset! ********************");
 		
 		GenFrequentRec.generateFrequentRec();
-		System.out.println("******************** 推荐结果生成成功！********************");	
+		System.out.println("******************** Successfully generating recommendations! ********************");	
 	}
 }

@@ -32,9 +32,6 @@ public class UpdateManager {
 		}
 	}
 	
-	/**
-	 * 停止任务，不再提交新任务，已提交任务会继续执行以致完成
-	 */
 	public void stop() {
 		scheduler.shutdown();
 	}
